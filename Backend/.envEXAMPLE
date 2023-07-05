@@ -1,0 +1,2 @@
+DB_CONN= mongodb+srv://pbonbol:<password>@canaryfit.jhlsoqo.mongodb.net/
+PORT= 3000
