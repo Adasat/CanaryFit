@@ -7,17 +7,46 @@ require("dotenv").config();
 
 
 const getOneUser = async (req, res) => {
-  let userId = req.params.id;
-  console.log(userId)
+  const userId = req.params.id
   try {
     const user = await User.findById(userId);
-    console.log(user)
     res.status(200).json(user);
   } catch (error) {
-    console.log(error)
     res.status(400).send("An error Ocurred!");
   }
 };
+
+/* const getOneUser = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId)
+      .populate({
+        path: 'actualRoutine',
+        model: 'Routine'
+      })
+      .populate({
+        path: 'progress',
+        model: 'Progress'
+      })
+      .populate({
+        path: 'favsRoutine',
+        model: 'Routine'
+      });
+
+    if (!user) {
+      return res.status(404).json('User not found')
+    }
+
+    const currentRoutine = user.actualRoutine
+    const progress = user.progress;
+    const favsRoutines = user.favsRoutine
+
+    res.status(200).json({ user, currentRoutine, progress, favsRoutines })
+  } catch (error) {
+    res.status(400).send("An error occurred!")
+  }
+}; */
 
 const createUser = async (req, res) => {
   try {
@@ -45,7 +74,8 @@ const createUser = async (req, res) => {
 
 
 
-async function updateWeight(userId, weight) {
+const  updateWeight = async(req, res) => {
+  const { userId, weight } = req.body
   try {
     const user = await User.findById(userId);
     if (!user) {
@@ -55,14 +85,14 @@ async function updateWeight(userId, weight) {
     const latestProgress = await Progress.findById(latestProgressId);
 
     if (!latestProgress) {
-      throw new Error("Progreso no encontrado");
+      throw new Error("Progress not found");
     }
     latestProgress.weightProgress.push(weight);
     await latestProgress.save();
-    res.status(200).json("Peso actualizado exitosamente")
+    res.status(200).json("Weight actualized succesfully!")
 
   } catch (error) {
-    res.status(400).send("Error al actualizar el peso:", error.message);
+    res.status(400).send("Error to actualize weight:", error.message);
   }
 }
 

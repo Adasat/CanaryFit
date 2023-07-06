@@ -27,10 +27,7 @@ const userSchema = new Schema(
       type: Number,
       require: true,
     },
-    weight: {
-      type: Number,
-      require:true,
-    },
+    
     weightTarget: {
       type: Number,
     },
