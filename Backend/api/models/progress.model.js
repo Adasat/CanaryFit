@@ -22,11 +22,11 @@ const progressSchema = new Schema(
           {
             reps: {
               type: Number,
-              require: true,
+              required: true,
             },
             weightUsed: {
               type: Number,
-              require: true,
+              required: true,
             },
           },
         ],

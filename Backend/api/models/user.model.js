@@ -6,11 +6,11 @@ const userSchema = new Schema(
   {
     firstname: {
       type: String,
-      require: true,
+      required: true,
     },
     lastname: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
@@ -21,11 +21,12 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
+   
     height: {
       type: Number,
-      require: true,
+      required: true,
     },
     
     weightTarget: {

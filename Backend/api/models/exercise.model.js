@@ -3,14 +3,18 @@ const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema(
   {
-    type:{
-        type: String,
-        enum: ['Pull', 'Push', 'Legs', 'Upper', 'Lower', 'FullBody'],
-        require: true
+    title: {
+      type: String,
+      required: true,
+      unique: true
     },
+    type:[{
+        type: String,
+        required: true
+    }],
     muscle: {
         type: String,
-        require: true
+        required: true
     }
    
   },{ timestamps: true }

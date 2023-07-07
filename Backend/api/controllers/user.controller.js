@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
 
-const getOneUser = async (req, res) => {
+/* const getOneUser = async (req, res) => {
   const userId = req.params.id
   try {
     const user = await User.findById(userId);
@@ -14,7 +14,7 @@ const getOneUser = async (req, res) => {
   } catch (error) {
     res.status(400).send("An error Ocurred!");
   }
-};
+}; */
 
 /* const getOneUser = async (req, res) => {
   const userId = req.params.id;
@@ -44,9 +44,58 @@ const getOneUser = async (req, res) => {
 
     res.status(200).json({ user, currentRoutine, progress, favsRoutines })
   } catch (error) {
+    console.log(error)
     res.status(400).send("An error occurred!")
   }
-}; */
+};
+ */
+
+const getOneUser = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await User.findById(userId)
+      .populate({
+        path: "actualRoutine",
+        model: "Routine",
+      })
+      .populate({
+        path: "progress",
+        model: "Progress",
+      })
+      .populate({
+        path: "favsRoutine",
+        model: "Routine",
+      });
+
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+
+    const currentRoutine = user.actualRoutine;
+    const progress = user.progress;
+    const favsRoutines = user.favsRoutine;
+
+    const response = { user };
+
+    if (currentRoutine) {
+      response.currentRoutine = currentRoutine;
+    }
+
+    if (progress && progress.length > 0) {
+      response.progress = progress;
+    }
+
+    if (favsRoutines && favsRoutines.length > 0) {
+      response.favsRoutines = favsRoutines;
+    }
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("An error occurred!");
+  }
+};
 
 const createUser = async (req, res) => {
   try {
@@ -56,6 +105,7 @@ const createUser = async (req, res) => {
       lastname: req.body.lastname,
       email: req.body.email,
       password: req.body.password,
+      birthday_date: req.body.birthday_date,
       height: req.body.height,
       weight: req.body.weight,
       weightTarget: req.body.weightTarget,
@@ -65,7 +115,8 @@ const createUser = async (req, res) => {
     });
 
     res.status(200).json({message: 'Profile created successfully!', 
-    token: token})
+    token: token,
+  id: user.id})
   } catch (error) {
     console.log(error)
     res.status(404).send('An error ocurred!')

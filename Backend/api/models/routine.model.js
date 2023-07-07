@@ -7,15 +7,15 @@ const routineSchema = new Schema(
   {
     title: {
       type: String, 
-      require: true,
+      required: true,
     },
     timeEstimate: {
       type: Number,
-      require: true,
+      required: true,
     },
     dayPerWeek: {
       type: Number,
-      require: true
+      required: true
     },
     routineTarget: {
       type: String,
