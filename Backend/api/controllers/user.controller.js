@@ -1,54 +1,8 @@
 require("dotenv").config();
 const User = require("../models/user.model")
-const Progress = require("../models/progress.model")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-require("dotenv").config();
+const Progress = require("../models/progress.model");
+const Routine = require("../models/routine.model");
 
-
-/* const getOneUser = async (req, res) => {
-  const userId = req.params.id
-  try {
-    const user = await User.findById(userId);
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).send("An error Ocurred!");
-  }
-}; */
-
-/* const getOneUser = async (req, res) => {
-  const userId = req.params.id;
-
-  try {
-    const user = await User.findById(userId)
-      .populate({
-        path: 'actualRoutine',
-        model: 'Routine'
-      })
-      .populate({
-        path: 'progress',
-        model: 'Progress'
-      })
-      .populate({
-        path: 'favsRoutine',
-        model: 'Routine'
-      });
-
-    if (!user) {
-      return res.status(404).json('User not found')
-    }
-
-    const currentRoutine = user.actualRoutine
-    const progress = user.progress;
-    const favsRoutines = user.favsRoutine
-
-    res.status(200).json({ user, currentRoutine, progress, favsRoutines })
-  } catch (error) {
-    console.log(error)
-    res.status(400).send("An error occurred!")
-  }
-};
- */
 
 const getOneUser = async (req, res) => {
   const userId = req.params.id;
@@ -72,9 +26,9 @@ const getOneUser = async (req, res) => {
       return res.status(404).json("User not found");
     }
 
-    const currentRoutine = user.actualRoutine;
+    const currentRoutine = await Routine.findById(user.actualRoutine._id).populate('exercises');
     const progress = user.progress;
-    const favsRoutines = user.favsRoutine;
+    const favsRoutines =  user.favsRoutine;
 
     const response = { user };
 
@@ -97,31 +51,6 @@ const getOneUser = async (req, res) => {
   }
 };
 
-const createUser = async (req, res) => {
-  try {
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
-    const user = await User.create({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password: req.body.password,
-      birthday_date: req.body.birthday_date,
-      height: req.body.height,
-      weight: req.body.weight,
-      weightTarget: req.body.weightTarget,
-    });
-    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "1y",
-    });
-
-    res.status(200).json({message: 'Profile created successfully!', 
-    token: token,
-  id: user.id})
-  } catch (error) {
-    console.log(error)
-    res.status(404).send('An error ocurred!')
-  }
-};
 
 
 
@@ -149,6 +78,5 @@ const  updateWeight = async(req, res) => {
 
 module.exports = {
   getOneUser,
-  createUser,
   updateWeight,
 };

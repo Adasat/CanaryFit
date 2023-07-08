@@ -4,7 +4,7 @@ const {getAllExercise,
   createExercise,
   getAllExercisesByTypes} = require('../controllers/exercise.controller')
 
-router.post("/", createExercise);
+router.post('/', createExercise);
 router.get("/", getAllExercise);
 router.get("/:exerciseId", getOneExercise)
 router.get('/type/:type', getAllExercisesByTypes)

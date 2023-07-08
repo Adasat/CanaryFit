@@ -9,8 +9,14 @@ const progressSchema = new Schema(
     },
     weightProgress: [
       {
-        type: Number,
+        weight: {
+          type: Number,
       },
+        bmi: {
+          type: Number
+        }
+      }
+      
     ],
     exerciseProgress: [
       {

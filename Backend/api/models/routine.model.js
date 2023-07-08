@@ -10,7 +10,8 @@ const routineSchema = new Schema(
       required: true,
     },
     timeEstimate: {
-      type: Number,
+      type: String,
+      enum: ['< 40', '40 a 60', '> 60'],
       required: true,
     },
     dayPerWeek: {
@@ -24,7 +25,7 @@ const routineSchema = new Schema(
     },
     styleRoutine: {
       type: String,
-      enum: ['Pull, Push and Legs', 'Upper Body and Lower Body', 'By muscles', 'Full body'],
+      enum: ['Pull, Push and Legs', 'Upper Body and Lower Body', 'By muscles', 'Full Body'],
       default: 'Full body'
     },
     owner: {

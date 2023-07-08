@@ -1,62 +1,98 @@
-const Exercise = require('../models/exercise.model')
-const Routine = require('../models/routine.model')
-const User = require('../models/user.model')
+const Exercise = require("../models/exercise.model");
+const Routine = require("../models/routine.model");
+const User = require("../models/user.model");
 
-const getAllPublicRoutines = (req, res) => {
-    try {
-      const routines = Routine.find({ public: True });
-      if(routines.length === 0){
-        res.status(400).send("Not found public's routines")
-      }
-      res.status(200).json(routines)      
-    } catch (error) {
-      res.status(400).send('An error ocurred!')
-    }
-}
+// GET ALL PUBLIC ROUTINES
 
-const getFavsRoutinesByUser = async (req, res) => {
-     return "";
-}
-
-const getCurrentRoutine = async (req, res) => {
+const getAllPublicRoutines = async (req, res) => {
   try {
-    const userId = req.params.UserId
+    const routines = await Routine.find({ public: true })
+      .populate("exercises")
+      .exec();
+    if (routines.length === 0) {
+      res.status(400).send("Not found public's routines");
+    }
+    res.status(200).json(routines);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("An error ocurred!");
+  }
+};
 
-    const user = await User.findById(userId).populate({
-      path: 'actualRoutine',
-      model: 'Routine'
-    });
+// GET ALL ROUTINES WHAT USER CREATED
 
-    if (!user) {
-      return res.status(404).json('Usuario no encontrado')
+const getAllRoutinesCreated = async(req, res) => {
+  try {
+    const userId = req.params.userId
+    const routines = await Routine.find({owner: userId}).populate('exercises')
+
+    if(routines.length === 0){
+      res.status(400).send('This user didnt created any routines')
     }
 
-    const currentRoutine = user.actualRoutine
-    res.status(200).json(currentRoutine)
+    res.status(200).json(routines)
   } catch (error) {
-    res.status(400).json('Error al obtener la rutina actual del usuario: ' + error.message)
+    res.status(400).send('An error ocurred!')
+    
   }
 }
 
-const getRoutineById = async (req, res) => {
-    const routineId = req.params.id 
-    try {
-        const routine = Routine.findById(routineId)
-        if(!routine){
-            res.status(400).send('Routine not found!')
-        }
-        res.status(200).json(routine)
-    } catch (error) {
-        res.status(400).send('An error ocurred!')
-        
+// GET THE CURRENT ROUTINE OF USER
+
+const getCurrentRoutine = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    const user = await User.findById(userId).populate({
+      path: "actualRoutine",
+      model: "Routine",
+    });
+
+    if (!user) {
+      return res.status(404).send("User not found");
     }
 
-}
+    const currentRoutine = await Routine.findById(
+      user.actualRoutine._id
+    ).populate("exercises");
+
+    res.status(200).json(currentRoutine);
+  } catch (error) {
+    res.status(400).send("An error ocurred!");
+  }
+};
+
+// GET ROUTINE BY ID
+
+const getRoutineById = async (req, res) => {
+  try {
+    const routineId = req.params.routineId;
+    const routine = await Routine.findById(routineId).populate("exercises");
+
+    if (!routine) {
+      return res.status(404).json("Routine not found");
+    }
+
+    const sanitizedRoutine = routine.toJSON();
+    res.status(200).json(sanitizedRoutine);
+  } catch (error) {
+    res.status(400).send("An error occurred while fetching routine");
+  }
+};
+
+
+// CREATE NEW ROUTINE
 
 const createRoutine = async (req, res) => {
   try {
-    const userId = req.user;
-    const exerciseIds = req.body.exercises
+    const exerciseIds = req.body.exercises;
+
+    const userId = req.body.owner;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
 
     const validExerciseIds = await Exercise.find({
       _id: { $in: exerciseIds },
@@ -71,54 +107,159 @@ const createRoutine = async (req, res) => {
       dayPerWeek: req.body.dayPerWeek,
       routineTarget: req.body.routineTarget,
       timeEstimate: req.body.timeEstimate,
-      owner: userId,
-      exercises: validExerciseIds, 
+      owner: req.body.owner,
+      exercises: validExerciseIds,
     });
 
-    res.status(200).json({message: "Routine created successfully",
-    id: routine.id});
+    res
+      .status(200)
+      .json({ message: "Routine created successfully", id: routine.id });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).send("An error occurred creating routine!");
   }
 };
 
 
-const updateRoutine = async (req, res) => {
-    return "";
+// ADD FAVOURITE ROUTINE TO THE PROFILE
+
+const addFavRoutine = async (req, res) => {
+  try {
+    const { userId, routineId } = req.body;
+    const routine = await Routine.findById(routineId);
+    if (!routine) {
+      res.status(400).send("Routine not found");
+    } else {
+      const user = await User.findByIdAndUpdate(
+        userId,
+        { $push: { favsRoutine: routineId } },
+        { new: true }
+      );
+
+      if (!user) {
+        return res.status(400).send("User not found");
+      }
+
+      res
+        .status(200)
+        .json({ message: "Favorite routine added successfully", user });
+    }
+  } catch (error) {
+    res.status(400).send("An error occurred!");
+  }
+};
+
+// UPDATE CURRENT ROUTINE
+
+const updateCurrentRoutine = async (req, res) => {
+  try {
+    const { userId, routineId } = req.body;
+
+    const routine = await Routine.findById(routineId);
+    if (!routine) {
+      res.status(400).send("Routine not found");
+    } else {
+      const user = await User.findByIdAndUpdate(userId, {
+        actualRoutine: routineId,
+      });
+
+      if (!user) {
+        res.status(400).send("User not found");
+      }
+      res.status(200).json({ message: "User updated successfully" });
+    }
+  } catch (error) {
+    res.status(400).send("An error ocurred!");
+  }
 }
+
+// UPDATE CREATED ROUTINE BY OWN USER
+
+const updateRoutine = async (req, res) => {
+  const routineId = req.body.routineId;
+  const userId = req.body.userId;
+  const newExercises = req.body.newExercises;
+
+  try {
+    const routine = await Routine.findById(routineId).populate('exercises')
+    if (!routine) {
+      return res.status(400).send('Routine not found!');
+    }
+
+    if (routine.owner.toString() !== userId) {
+      return res.status(401).send('Unauthorized: User is not the owner of the routine');
+    }
+
+    let exerciseExists = false;
+
+    for (let i = 0; i < newExercises.length; i++) {
+      const exerciseId = newExercises[i];
+      const exercise = await Exercise.findById(exerciseId);
+      if (!exercise) {
+        return('Exercise not found')
+      }
+
+      if (routine.exercises.includes(exercise._id)) {
+        exerciseExists = true;
+        break;
+      }
+
+      routine.exercises.push(exercise._id);
+    }
+
+    if (exerciseExists) {
+      return(`Exercise already exists in the routine`);
+    }
+
+    await routine.save();
+
+    res.status(200).json(routine);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send('An error occurred!');
+  }
+};
+
+//  DELETE ROUTINE BY OWN USER
 
 const deleteRoutine = async (req, res) => {
-    const routineId = req.params.routineId
-    const userId = req.userId
-    try {
-        const routine = await Routine.findOne({ _id: routineId, owner: userId })
-        if (!routine) {
-            return res.status(404).json('Not authorized')
-        }
-        await Routine.deleteOne({ _id: routineId })
-        res.status(200).json('Routine deleted successfully')
-    } catch (error) {
-        res.status(400).json('An error ocurred!')   
+  const routineId = req.body.routineId;
+  const userId = req.body.userId;
+  try {
+    const routine = await Routine.findOne({ _id: routineId, owner: userId });
+    if (!routine) {
+      return res.status(404).json("Not authorized");
     }
-}
+    await Routine.deleteOne({ _id: routineId });
+    res.status(200).json("Routine deleted successfully");
+  } catch (error) {
+    res.status(400).json("An error ocurred!");
+  }
+};
 
+
+// DELETE EXERCISE FROM ROUTINE BY OWN USER
 
 const deleteExerciseFromRoutine = async (req, res) => {
   const routineId = req.params.routineId;
   const exerciseId = req.body.exerciseId;
-  const userId = req.userId;
+  const userId = req.body.userId;
 
   try {
-    const routine = await Routine.findOneAndUpdate(
-      { _id: routineId, owner: userId },
-      { $pull: { exercises: exerciseId } },
-      { new: true }
-    );
+    const routine = await Routine.findOne({ _id: routineId, owner: userId });
 
     if (!routine) {
-      return res.status(404).json("Not authorized");
+      return res.status(404).json("Routine not found or you are not authorized");
     }
+
+    const exerciseIndex = routine.exercises.indexOf(exerciseId);
+
+    if (exerciseIndex === -1) {
+      return res.status(400).json("Exercise not found in the routine");
+    }
+
+    routine.exercises.splice(exerciseIndex, 1);
+    await routine.save();
 
     res.status(200).json("Exercise removed from routine successfully");
   } catch (error) {
@@ -128,13 +269,17 @@ const deleteExerciseFromRoutine = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   getAllPublicRoutines,
-  getFavsRoutinesByUser,
   getCurrentRoutine,
   getRoutineById,
+  getAllRoutinesCreated,
   createRoutine,
+  addFavRoutine,
   updateRoutine,
+  updateCurrentRoutine,
   deleteRoutine,
   deleteExerciseFromRoutine,
-}
+};

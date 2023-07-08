@@ -1,8 +1,9 @@
 const router = require("express").Router()
-const {getProgressByUser, getAllProgressByUser} = require('../controllers/progress.controller')
+const {getOneProgress, getAllProgressByUser, addRegisterWeight} = require('../controllers/progress.controller')
 
 
-router.get('/all/:userId', getAllProgressByUser)
-router.get('/:id', getProgressByUser)
+router.get('/user/:userId', getAllProgressByUser)
+router.get('/:progressId', getOneProgress)
+router.post('/', addRegisterWeight)
 
 module.exports = router;
