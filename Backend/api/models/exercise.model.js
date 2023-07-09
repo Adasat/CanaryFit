@@ -15,7 +15,9 @@ const exerciseSchema = new Schema(
     muscle: {
         type: String,
         required: true
-    }
+    },
+    description: [String],
+    recommendation: [String]
    
   },{ timestamps: true }
 );

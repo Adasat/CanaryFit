@@ -12,18 +12,23 @@ const {
   deleteExerciseFromRoutine,
 } = require("../controllers/routine.controller");
 
-router.get('/', getAllPublicRoutines)
-router.get('/:routineId', getRoutineById)
-router.get('/current/:userId', getCurrentRoutine)
-router.get('/created/:userId', getAllRoutinesCreated)
+const {checkAuth} = require('../middleware/auth')
 
-router.post("/", createRoutine)
-router.post('/favs', addFavRoutine)
 
-router.patch('/', updateCurrentRoutine)
-router.patch('/update', updateRoutine)
+router.get('/', checkAuth, getAllPublicRoutines)
+router.get('/created', checkAuth, getAllRoutinesCreated)
+router.get('/current', checkAuth, getCurrentRoutine)
+router.get('/:routineId', checkAuth, getRoutineById)
 
-router.delete('/', deleteRoutine)
-router.delete('/:routineId', deleteExerciseFromRoutine)
+
+
+router.post("/", checkAuth, createRoutine)
+router.post('/favs', checkAuth, addFavRoutine)
+
+router.patch('/', checkAuth, updateCurrentRoutine)
+router.patch('/update', checkAuth, updateRoutine)
+
+router.delete('/', checkAuth, deleteRoutine)
+router.delete('/:routineId', checkAuth, deleteExerciseFromRoutine)
 
 module.exports = router

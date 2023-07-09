@@ -23,7 +23,8 @@ const getAllPublicRoutines = async (req, res) => {
 
 const getAllRoutinesCreated = async(req, res) => {
   try {
-    const userId = req.params.userId
+    const userId = res.locals.user._id;
+
     const routines = await Routine.find({owner: userId}).populate('exercises')
 
     if(routines.length === 0){
@@ -41,7 +42,7 @@ const getAllRoutinesCreated = async(req, res) => {
 
 const getCurrentRoutine = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = res.locals.user._id;
 
     const user = await User.findById(userId).populate({
       path: "actualRoutine",
@@ -87,7 +88,7 @@ const createRoutine = async (req, res) => {
   try {
     const exerciseIds = req.body.exercises;
 
-    const userId = req.body.owner;
+    const userId = res.locals.user._id;
 
     const user = await User.findById(userId);
     if (!user) {
@@ -107,7 +108,7 @@ const createRoutine = async (req, res) => {
       dayPerWeek: req.body.dayPerWeek,
       routineTarget: req.body.routineTarget,
       timeEstimate: req.body.timeEstimate,
-      owner: req.body.owner,
+      owner: userId,
       exercises: validExerciseIds,
     });
 
@@ -125,7 +126,8 @@ const createRoutine = async (req, res) => {
 
 const addFavRoutine = async (req, res) => {
   try {
-    const { userId, routineId } = req.body;
+    const routineId  = req.body.routineId
+    const userId = res.locals.user._id
     const routine = await Routine.findById(routineId);
     if (!routine) {
       res.status(400).send("Routine not found");
@@ -153,7 +155,8 @@ const addFavRoutine = async (req, res) => {
 
 const updateCurrentRoutine = async (req, res) => {
   try {
-    const { userId, routineId } = req.body;
+    const routineId  = req.body.routineId
+    const userId = res.locals.user._id
 
     const routine = await Routine.findById(routineId);
     if (!routine) {
@@ -177,16 +180,16 @@ const updateCurrentRoutine = async (req, res) => {
 
 const updateRoutine = async (req, res) => {
   const routineId = req.body.routineId;
-  const userId = req.body.userId;
   const newExercises = req.body.newExercises;
+  const userId = res.locals.user._id
+
 
   try {
-    const routine = await Routine.findById(routineId).populate('exercises')
+    const routine = await Routine.findById(routineId)
     if (!routine) {
       return res.status(400).send('Routine not found!');
     }
-
-    if (routine.owner.toString() !== userId) {
+    if (routine.owner.toString() !== userId.toString()) {
       return res.status(401).send('Unauthorized: User is not the owner of the routine');
     }
 
@@ -224,7 +227,7 @@ const updateRoutine = async (req, res) => {
 
 const deleteRoutine = async (req, res) => {
   const routineId = req.body.routineId;
-  const userId = req.body.userId;
+  const userId = res.locals.user._id
   try {
     const routine = await Routine.findOne({ _id: routineId, owner: userId });
     if (!routine) {
@@ -243,7 +246,7 @@ const deleteRoutine = async (req, res) => {
 const deleteExerciseFromRoutine = async (req, res) => {
   const routineId = req.params.routineId;
   const exerciseId = req.body.exerciseId;
-  const userId = req.body.userId;
+  const userId = res.locals.user._id
 
   try {
     const routine = await Routine.findOne({ _id: routineId, owner: userId });

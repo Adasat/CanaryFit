@@ -3,11 +3,14 @@ const {getAllExercise,
   getOneExercise,
   createExercise,
   getAllExercisesByTypes} = require('../controllers/exercise.controller')
+const {checkAuth} = require('../middleware/auth')
 
-router.post('/', createExercise);
-router.get("/", getAllExercise);
-router.get("/:exerciseId", getOneExercise)
-router.get('/type/:type', getAllExercisesByTypes)
+
+
+router.post('/', checkAuth, createExercise);
+router.get("/", checkAuth, getAllExercise);
+router.get("/:exerciseId", checkAuth, getOneExercise)
+router.get('/type/:type', checkAuth, getAllExercisesByTypes)
 
 
 

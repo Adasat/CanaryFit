@@ -3,9 +3,10 @@ const User = require("../models/user.model")
 const Progress = require("../models/progress.model");
 const Routine = require("../models/routine.model");
 
+// GET ONE USER
 
 const getOneUser = async (req, res) => {
-  const userId = req.params.id;
+  const userId = req.params.userId;
 
   try {
     const user = await User.findById(userId)
@@ -26,9 +27,9 @@ const getOneUser = async (req, res) => {
       return res.status(404).json("User not found");
     }
 
-    const currentRoutine = await Routine.findById(user.actualRoutine._id).populate('exercises');
+      const currentRoutine = user.actualRoutine ? await Routine.findById(user.actualRoutine._id).populate('exercises') : null;
     const progress = user.progress;
-    const favsRoutines =  user.favsRoutine;
+    const favsRoutines = user.favsRoutine;
 
     const response = { user };
 
@@ -54,29 +55,6 @@ const getOneUser = async (req, res) => {
 
 
 
-const  updateWeight = async(req, res) => {
-  const { userId, weight } = req.body
-  try {
-    const user = await User.findById(userId);
-    if (!user) {
-      throw new Error("User not found");
-    }
-    const latestProgressId = user.progress[user.progress.length - 1];
-    const latestProgress = await Progress.findById(latestProgressId);
-
-    if (!latestProgress) {
-      throw new Error("Progress not found");
-    }
-    latestProgress.weightProgress.push(weight);
-    await latestProgress.save();
-    res.status(200).json("Weight actualized succesfully!")
-
-  } catch (error) {
-    res.status(400).send("Error to actualize weight:", error.message);
-  }
-}
-
 module.exports = {
   getOneUser,
-  updateWeight,
 };

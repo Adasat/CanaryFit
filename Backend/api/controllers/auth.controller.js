@@ -13,7 +13,6 @@ const signUp = async (req, res) => {
       lastname: req.body.lastname,
       email: req.body.email,
       password: req.body.password,
-      birthday_date: req.body.birthday_date,
       height: req.body.height,
       weight: req.body.weight,
       weightTarget: req.body.weightTarget,
@@ -21,6 +20,7 @@ const signUp = async (req, res) => {
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1y",
     });
+    
 
     res.status(200).json({message: 'Profile created successfully!', 
     token: token,
