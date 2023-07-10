@@ -5,6 +5,20 @@ const Routine = require("../models/routine.model");
 
 // GET ONE USER
 
+const getAllUsers = async(req, res) => {
+  try {
+    const users = await User.find()
+    if(users.lenght === 0){
+      res.status(400).send('Not users found')
+    }
+    res.status(200).json(users)
+
+  } catch (error) {
+    console.log(error)
+    res.status(404).send("An error ocurred!");
+  }
+}
+
 const getOneUser = async (req, res) => {
   const userId = req.params.userId;
 
@@ -57,4 +71,5 @@ const getOneUser = async (req, res) => {
 
 module.exports = {
   getOneUser,
+  getAllUsers
 };
