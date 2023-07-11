@@ -1,13 +1,34 @@
-import { createContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import jwt from 'jsonwebtoken'
+import { getOneUserbyEmail } from "@/app/services/user.services";
 
-export const userContext = createContext()
+export const userContext = createContext(null)
 
  function Context({ children }) {
-  const [user, setUser] = useState();
+
+  const getUserbyEmail = async () => {
+    const email =  await window.localStorage.getItem('email');
+
+    const res = await getOneUserbyEmail(email)
+    setUser(res)
+  }
+  
+
+  
+
+  useEffect(() => {
+getUserbyEmail()  
+}, []);
+
+
+
+ 
 
   return (
-    <userContextProvider value={{ user, setUser }}>
+    <userContext.Provider value={{ user, setUser}}>
       {children}
-    </userContextProvider>
+    </userContext.Provider>
   );
 }
+ 
+export default Context

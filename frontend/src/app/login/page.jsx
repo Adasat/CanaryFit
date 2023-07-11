@@ -1,18 +1,15 @@
 'use client'
-
 import Image from 'next/image'
 import Bg2 from '../../../public/bg2.jpg'
 import { useState } from 'react'
 import Link from 'next/link'
-import { userLogin } from '../services/auth.service'
-import { redirect } from 'next/dist/server/api-utils'
+import { userLogin } from '../services/auth.services'
+import { redirect } from 'next/navigation'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [visibility, setVisibility] = useState(false)
-
-
 
   const handlePassword = (e) => {
     setPassword(e.target.value)
@@ -26,16 +23,22 @@ export default function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault()
     
-    await userLogin(email, password)
-    redirect('/home')
-     
+    const res = await userLogin(email, password)
+    
+    if(res){
+      alert('Logged!')
+      await redirect('/home')
+
+    }else{
+      alert('Email or password invalid')
+    }
     
   }
  
 
   return (
     <main className="flex  min-h-screen justify-center items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 border-black ">
         <div className="bg-white text-black">
           <Image src={Bg2} width={540} alt="Login photo" />
         </div>
@@ -143,7 +146,7 @@ export default function Login() {
                 {'    '}Sign up
               </Link>
             </p>
-
+            
             <button
               className="flex justify-center self-center md:text-lg w-2/4  text-white bg-gradient-to-r mt-10 from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               onClick={handleSubmit}

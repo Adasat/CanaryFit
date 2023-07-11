@@ -18,6 +18,19 @@ const getAllUsers = async(req, res) => {
     res.status(404).send("An error ocurred!");
   }
 }
+const getUserByEmail = async (req, res) => {
+  const userEmail = req.params.userEmail
+  try {
+    const user = await User.findOne({email: userEmail})
+    if(!user){
+      res.status(500).send('User not found!')
+    }
+    res.status(200).json(user)
+    
+  } catch (error) {
+    res.status(500).send('An error ocurred!')
+  }
+}
 
 const getOneUser = async (req, res) => {
   const userId = req.params.userId;
@@ -71,5 +84,6 @@ const getOneUser = async (req, res) => {
 
 module.exports = {
   getOneUser,
-  getAllUsers
+  getAllUsers,
+  getUserByEmail
 };

@@ -2,9 +2,9 @@ import { api} from './api.js'
 
 export const userLogin = async (email, password) => {
   try {
-    const { data } = await api.post("/auth/login", { email, password })
-    console.log(data)
+    const { data } = await api.post("/auth/login", { email: email, password: password})
     window.localStorage.setItem("token", data.userDetails.token)
+    window.localStorage.setItem("email", email)
     return true
   } catch (err) {
     return false
