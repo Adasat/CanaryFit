@@ -1,7 +1,10 @@
 
-import axios from "axios";
+import axios from 'axios'
+import { useEffect, useState } from 'react';
 
 export const api = axios.create({
-    baseURL: process.env.DB_CONN,
-    timeout: 3000
-})
+  baseURL: 'http://localhost:27020/api',
+  timeout: 3000,
+});
+
+

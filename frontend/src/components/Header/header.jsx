@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import CanaryFitImage from '../../public/icon.png'
+import CanaryFitImage from '../../../public/icon.png'
+import Link from 'next/link';
 
 
 export default function Header() {
@@ -15,7 +16,7 @@ export default function Header() {
           />
 
           <span class="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">
-            Canary Fit
+            <Link href={'/home'}>Canary Fit</Link>
           </span>
         </div>
 
@@ -58,7 +59,7 @@ export default function Header() {
           <ul class="flex flex-col font-large p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-pr md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a
-                href="#"
+                href="/today"
                 class="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
                 aria-current="page"
               >
@@ -67,7 +68,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                href="#"
+                href="/myroutines"
                 class="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
               >
                 My routines
@@ -75,7 +76,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                href="#"
+                href="/myprofile"
                 class="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
               >
                 My profile
@@ -85,5 +86,5 @@ export default function Header() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
