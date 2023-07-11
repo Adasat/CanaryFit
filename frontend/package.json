@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
+<<<<<<< HEAD
     "flowbite": "^1.7.0",
+=======
+    "heroicons": "^2.0.18",
+>>>>>>> 4b50f59b24db59d6e7bdda8631745fb740db721e
     "next": "13.4.9",
     "postcss": "8.4.25",
     "react": "18.2.0",
