@@ -18,10 +18,12 @@ const getAllUsers = async(req, res) => {
     res.status(404).send("An error ocurred!");
   }
 }
+
 const getUserByEmail = async (req, res) => {
-  const userEmail = req.params.userEmail
+
+  const userMatch = res.locals.user.email
   try {
-    const user = await User.findOne({email: userEmail})
+    const user = await User.findOne({email: userMatch})
     if(!user){
       res.status(500).send('User not found!')
     }

@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
-const checkAuth = (req, res, next) => {
+const checkAuth = (req, res, next) => { 
+  console.log(req.headers.token )
   jwt.verify(req.headers.token, process.env.JWT_SECRET, async (error, result) => {
     if (error) {
     console.log(error)
@@ -12,8 +13,8 @@ const checkAuth = (req, res, next) => {
     if (!user) {
       return res.status(403).send(">> Token not valid2!");
     }
-
     res.locals.user = user;
+    
     next();
   });
 };

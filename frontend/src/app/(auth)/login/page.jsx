@@ -1,15 +1,17 @@
 'use client'
 import Image from 'next/image'
-import Bg2 from '../../../public/bg2.jpg'
+import Bg2 from '../../../../public/bg2.jpg'
 import { useState } from 'react'
 import Link from 'next/link'
-import { userLogin } from '../services/auth.services'
+import { userLogin } from '@/services/auth.services' 
 import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [visibility, setVisibility] = useState(false)
+  const router = useRouter()
 
   const handlePassword = (e) => {
     setPassword(e.target.value)
@@ -27,7 +29,7 @@ export default function Login() {
     
     if(res){
       alert('Logged!')
-      await redirect('/home')
+      router.replace('/home')
 
     }else{
       alert('Email or password invalid')

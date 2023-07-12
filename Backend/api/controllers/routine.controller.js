@@ -42,7 +42,8 @@ const getAllRoutinesCreated = async(req, res) => {
 
 const getCurrentRoutine = async (req, res) => {
   try {
-    const userId = res.locals.user._id;
+    const userId = res.locals.user.id;
+    console.log(userId)
 
     const user = await User.findById(userId).populate({
       path: "actualRoutine",
@@ -54,11 +55,12 @@ const getCurrentRoutine = async (req, res) => {
     }
 
     const currentRoutine = await Routine.findById(
-      user.actualRoutine._id
+      user.actualRoutine.id
     ).populate("exercises");
 
     res.status(200).json(currentRoutine);
   } catch (error) {
+    console.log(error)
     res.status(400).send("An error ocurred!");
   }
 };
@@ -112,11 +114,13 @@ const createRoutine = async (req, res) => {
       exercises: validExerciseIds,
     });
 
+    await User.findByIdAndUpdate(userId, {actualRoutine: routine._id})
+
     res
       .status(200)
       .json({ message: "Routine created successfully", id: routine.id });
   } catch (error) {
-    console.log(error);
+    console.log(error)
     res.status(400).send("An error occurred creating routine!");
   }
 };

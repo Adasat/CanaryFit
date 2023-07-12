@@ -10,6 +10,6 @@ export const getAllPublicRoutines = async () => {
         return data
         
     } catch (error) {
-        return 'An error ocurred!'
+        console.log('An error ocurred!')
     }
 }

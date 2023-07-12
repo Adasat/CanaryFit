@@ -3,8 +3,8 @@ const { getOneUser, getAllUsers, getUserByEmail } = require("../controllers/user
 const {checkAuth} = require('../middleware/auth')
 
 router.get("/", getAllUsers);
+router.get("/email", checkAuth, getUserByEmail)
 router.get("/:userId", checkAuth, getOneUser);
-router.get("email/:userEmail", getUserByEmail)
 
 
 

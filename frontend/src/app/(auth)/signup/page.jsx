@@ -1,8 +1,9 @@
 'use client'
-import ImageSection from '../../components/imageSection/imageSection'
+import ImageSection from '../../../components/imageSection/imageSection'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { signupUser  } from '../services/auth.services'
-import { getAllUsers } from '../services/user.services'
+import { signupUser  } from '../../../services/auth.services'
+import { getAllUsers } from '../../../services/user.services'
 import { redirect } from 'next/navigation'
 import SignupForm from '@/components/SignupForm/signupForm'
 
@@ -15,6 +16,7 @@ export default function Signup() {
   const [height, setHeight] = useState('')
   const [weight, setWeight] = useState('')
   const [targetWeight, setTargetWeight] = useState('')
+  const router = useRouter()
 
   const getUsers = async () => {
     const res = await getAllUsers()
@@ -67,8 +69,7 @@ export default function Signup() {
       alert('User exists')
     } else {
      signupUser(firstname, lastname, email, password, height, weight,targetWeight)
-     alert('Did it!')
-     redirect('/login')
+     router.replace('/login')
     }
   }
 

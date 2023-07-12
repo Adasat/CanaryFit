@@ -1,6 +1,8 @@
+'use client'
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import jwt from 'jsonwebtoken'
-import { getOneUserbyEmail } from "@/app/services/user.services";
+import { getOneUserbyEmail } from "@/services/user.services";
 
 export const userContext = createContext(null)
 
