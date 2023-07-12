@@ -2,20 +2,13 @@ import { getOneUserbyId } from '@/services/user.services'
 import React, { useEffect, useState } from 'react'
 
 function CardRoutine({ routine, handleOpenModal }) {
-  const [userOwner, setUserOwner] = useState('')
-  const [eachRoutine, setEachRoutine] = useState(routine)
 
-  const idOwner = routine.owner
-
-  const getOwner = (idOwner) => {
-    const res = getOneUserbyId(idOwner)
-    setUserOwner(res)
+  
+  
+  const handleRoutineForModal = (routine) => {
+    return routine 
   }
-
-  useEffect(() => {
-    getOwner(idOwner)
-  }, [])
-
+  
   return (
     <>
       <div className="max-w-sm bg-white border-primary shadow-xl rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -30,9 +23,7 @@ function CardRoutine({ routine, handleOpenModal }) {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               <b>Type:</b> <span>{routine.styleRoutine} </span>
             </p>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              <b>Type:</b> <span>{routine.styleRoutine} </span>
-            </p>
+            
           </div>
 
           <div className="flex justify-between">
@@ -47,7 +38,7 @@ function CardRoutine({ routine, handleOpenModal }) {
 
             <button
               href="routine"
-              onClick={handleOpenModal}
+              onClick={() => handleOpenModal(routine)}
               className="inline-flex items-center h-12 px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
               <b>Read more</b>

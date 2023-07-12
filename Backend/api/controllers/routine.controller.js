@@ -8,6 +8,7 @@ const getAllPublicRoutines = async (req, res) => {
   try {
     const routines = await Routine.find({ public: true })
       .populate("exercises")
+      .populate("owner")
       .exec();
     if (routines.length === 0) {
       res.status(400).send("Not found public's routines");
@@ -70,7 +71,7 @@ const getCurrentRoutine = async (req, res) => {
 const getRoutineById = async (req, res) => {
   try {
     const routineId = req.params.routineId;
-    const routine = await Routine.findById(routineId).populate("exercises");
+    const routine = await Routine.findById(routineId).populate("exercises").populate('owner');
 
     if (!routine) {
       return res.status(404).json("Routine not found");
@@ -227,6 +228,34 @@ const updateRoutine = async (req, res) => {
   }
 };
 
+//DELETE ROUTINE FOR FAVS ROUTINE
+const deleteFavRoutine = async (req, res) => {
+  const routineId = req.body.routineId;
+  const userId = res.locals.user._id;
+  
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    const index = user.favsRoutine.indexOf(routineId);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'Routine not found in favorites' });
+    }
+
+    user.favsRoutine.splice(index, 1);
+
+    await user.save();
+
+    res.status(200).json({ message: 'Routine removed from favorites' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
 //  DELETE ROUTINE BY OWN USER
 
 const deleteRoutine = async (req, res) => {
@@ -287,6 +316,7 @@ module.exports = {
   addFavRoutine,
   updateRoutine,
   updateCurrentRoutine,
+  deleteFavRoutine,
   deleteRoutine,
   deleteExerciseFromRoutine,
 };

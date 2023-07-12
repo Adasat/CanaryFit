@@ -12,7 +12,7 @@ export default function Home() {
     const [routines, setRoutines] = useState([])
     const [user, setUser] = useState('')
     const [showModal, setShowModal] = useState(false)
-    
+const [selectedRoutine, setSelectedRoutine] = useState(null);    
 
     const getAllRoutines = async () => {
       const res = await getAllPublicRoutines()
@@ -31,10 +31,12 @@ export default function Home() {
       getUserbyEmail()
     }, [])
 
-    const handleOpenModal = () => {
-      setShowModal(true)
-    }
-    
+   const handleOpenModal = (routine) => {
+  setSelectedRoutine(routine);
+  setShowModal(true);
+};
+
+
 
   
  
@@ -66,7 +68,7 @@ export default function Home() {
        )}
        <div className="bg-gray-200 rounded-md p-4 scroll-m-2 md:col-start-2 col-span-4 ">
          <div className="grid justify-center md:grid-cols-4 gap-2">
-           {routines.length !== 0 ? (
+           {routines && routines.length !== 0 ? (
              routines.map((routine, i) => (
                <CardRoutine
                  key={i}
@@ -80,7 +82,7 @@ export default function Home() {
          </div>
        </div>
      </div>
-     <ModalRoutine isVisible={showModal} onClose={()=>setShowModal(false)}/>
+     <ModalRoutine isVisible={showModal} onClose={()=>{setSelectedRoutine(null); setShowModal(false)}} routine={selectedRoutine}/>
    </>
  )
 }

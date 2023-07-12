@@ -32,7 +32,6 @@ export const getOneUserbyId = async (userId) => {
     })
     return data
   } catch (error) {
-    console.log(error)
     return 'An error ocurred!'
   }
 } 
