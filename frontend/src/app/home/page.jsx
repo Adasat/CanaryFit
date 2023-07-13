@@ -37,11 +37,6 @@ const [selectedRoutine, setSelectedRoutine] = useState(null);
 };
 
 
-
-  
- 
-  
-
  return (
    <>
      <div className="flex justify-start items-center ml-20 my-4">
