@@ -13,7 +13,7 @@ export const getOneUserbyEmail = async () => {
   try {
     const {data} = await api.get(`/profile/email/` ,{
       headers: {
-        token: localStorage.getItem('token'),
+        token: window.localStorage.getItem('token'),
       },
     })
     return data
@@ -27,7 +27,7 @@ export const getOneUserbyId = async (userId) => {
   try {
     const { data } = await api.get(`/profile/${userId}`, {
       headers: {
-        token: localStorage.getItem('token'),
+        token: window.localStorage.getItem('token'),
       },
     })
     return data

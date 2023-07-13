@@ -1,70 +1,8 @@
-import React, { useState } from 'react'
 
 function RoutineForm({ onFormChange, formData }) {
-  /*  const [formData, setFormData] = useState({
-        title: '',
-        target: '',
-        weightTarget: '',
-        trainingStyle: '',
-        daysperWeek: '',
-        gymTime: '',
-        isPublic: ''
-    })
- */
-  /*  const [target, setTarget] = useState('')
-  const [title, setTitle] = useState('')
-  const [weightTarget, setWeightTarget] = useState('')
-  const [trainingStyle, setTrainingStyle] = useState('')
-  const [daysperWeek, setDaysPerWeek] = useState('')
-  const [gymTime, setGymTime] = useState('')
-  const [isPublic, setIsPublic] = useState(true)
-   */
-  /* const handleFormChange = () => {
-    onFormChange(formData)
-  }
-
-  const handleFieldChange = (field, value) => {
-    onFormChange((prevData) => ({
-      ...prevData,
-      [field]: value
-    }))
-  }
- */
-  /*  const handleTarget = (e) => {
-    setTarget(e.target.value)
-    handleFieldChange('target', e.target.value)
-  }
-  const handleTitle = (e) => {
-    setTitle(e.target.value)
-    handleFieldChange('title', e.target.value)
-  }
-  const handleWeightTarget = (e) => {
-    setWeightTarget(e.target.value)
-    handleFieldChange('weightTarget', e.target.value)
-  }
-  const handleTrainingStyle = (e) => {
-    setTrainingStyle(e.target.value)
-    handleFieldChange('trainingStyle', e.target.value)
-
-  }
-  const handleDaysPerWeek = (e) => {
-    setDaysPerWeek(e.target.value)
-    handleFieldChange('daysperWeek', e.target.value)
-
-  }
-  const handleTimeInGym = (e) => {
-    setGymTime(e.target.value)
-    handleFieldChange('gymTime', e.target.value)
-
-  }
-  const handleChecked = () => {
-    setIsPublic(!isPublic)
-    handleFieldChange('isPublic', !isPublic)
-
-  } */
 
   return (
-    <div className="flex flex-col justify-center items-center mt-4 ">
+    <div className="flex flex-col bg-gray-50 p-4 rounded-lg shadow-2xl justify-center items-center mt-4 ">
       <h2 className="p-4 text-2xl">Create routine</h2>
       <div className="w-4/5">
         <label htmlFor="title" className="text-center md:text-lg">
@@ -141,7 +79,7 @@ function RoutineForm({ onFormChange, formData }) {
         </div>
         <div className="flex flex-row items-center justify-end mt-4 gap-2">
           <label htmlFor="weightTarget" className="text-center md:text-lg">
-            What's is your weight objective: {formData.weightTarget}
+            What's is your weight objective
           </label>
           <input
             type="text"
@@ -154,7 +92,7 @@ function RoutineForm({ onFormChange, formData }) {
           />
         </div>
         <label htmlFor="target" className="md:text-lg">
-          Training Style {formData.trainingStyle}
+          Training Style 
         </label>
         <div
           className="inline-flex rounded-md shadow-sm justify-center"
@@ -211,7 +149,7 @@ function RoutineForm({ onFormChange, formData }) {
           </button>
         </div>
         <label htmlFor="target" className="mt-4 md:text-lg">
-          Days per week {formData.daysperWeek}
+          Days per week 
         </label>
         <div
           className="inline-flex rounded-md shadow-sm justify-center  "
@@ -257,7 +195,7 @@ function RoutineForm({ onFormChange, formData }) {
           </button>
         </div>
         <label htmlFor="target" className="mt-4 md:text-lg">
-          Estimate time {formData.gymTime}
+          Estimate time 
         </label>
         <div
           className="inline-flex rounded-md shadow-sm justify-center  "

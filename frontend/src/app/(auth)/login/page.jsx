@@ -3,8 +3,7 @@ import Image from 'next/image'
 import Bg2 from '../../../../public/bg2.jpg'
 import { useState } from 'react'
 import Link from 'next/link'
-import { userLogin } from '@/services/auth.services' 
-import { redirect } from 'next/navigation'
+import { userLogin } from '@/services/auth.services'
 import { useRouter } from 'next/navigation'
 
 export default function Login() {
@@ -22,21 +21,18 @@ export default function Login() {
   const handleVisibility = () => {
     setVisibility(!visibility)
   }
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    const res = await userLogin(email, password)
-    
-    if(res){
-      alert('Logged!')
-      router.replace('/home')
 
-    }else{
+    const res = await userLogin(email, password)
+
+    if (res) {
+      alert('Logged!')
+      router.push('/home')
+    } else {
       alert('Email or password invalid')
     }
-    
   }
- 
 
   return (
     <main className="flex  min-h-screen justify-center items-center">
@@ -50,7 +46,7 @@ export default function Login() {
             <div className="mt-10">
               <div className="flex flex-col mb-6">
                 <label
-                  htmlFor='email'
+                  htmlFor="email"
                   className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
                 >
                   E-Mail Address: {email}
@@ -82,7 +78,7 @@ export default function Login() {
               </div>
               <div className="flex flex-col mb-6">
                 <label
-                  htmlFor='password'
+                  htmlFor="password"
                   className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
                 >
                   Password: {password}
@@ -148,9 +144,9 @@ export default function Login() {
                 {'    '}Sign up
               </Link>
             </p>
-            
+
             <button
-              className="flex justify-center self-center md:text-lg w-2/4  text-white bg-gradient-to-r mt-10 from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              className="flex justify-center self-center md:text-lg w-2/4  text-white bg-primary focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
               onClick={handleSubmit}
             >
               Submit

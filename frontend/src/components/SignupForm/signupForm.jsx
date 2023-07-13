@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import InputField from '../inputField/inputField';
-import ButtonCustom from '../Button/buttonCustom'; // Asegúrate de importar ButtonCustom correctamente con la letra "B" en mayúscula
+import ButtonCustom from '../Button/ButtonCustom'; // Asegúrate de importar ButtonCustom correctamente con la letra "B" en mayúscula
 
 export default function SignupForm({
   firstname,

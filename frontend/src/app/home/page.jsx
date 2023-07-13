@@ -62,7 +62,7 @@ const [selectedRoutine, setSelectedRoutine] = useState(null);
          <TodayBtn className="row-start-1 row-span-2" />
        )}
        <div className="bg-gray-200 rounded-md p-4 scroll-m-2 md:col-start-2 col-span-4 ">
-         <div className="grid justify-center md:grid-cols-4 gap-2">
+         <div className="grid justify-center md:grid-cols-4 gap-2 ">
            {routines && routines.length !== 0 ? (
              routines.map((routine, i) => (
                <CardRoutine
