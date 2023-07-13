@@ -110,6 +110,7 @@ const createRoutine = async (req, res) => {
       styleRoutine: req.body.styleRoutine,
       dayPerWeek: req.body.dayPerWeek,
       routineTarget: req.body.routineTarget,
+      weightTarget: req.body.weightTarget,
       timeEstimate: req.body.timeEstimate,
       owner: userId,
       exercises: validExerciseIds,

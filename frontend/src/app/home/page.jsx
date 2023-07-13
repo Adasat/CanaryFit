@@ -12,7 +12,7 @@ export default function Home() {
     const [routines, setRoutines] = useState([])
     const [user, setUser] = useState('')
     const [showModal, setShowModal] = useState(false)
-const [selectedRoutine, setSelectedRoutine] = useState(null);    
+    const [selectedRoutine, setSelectedRoutine] = useState(null);    
 
     const getAllRoutines = async () => {
       const res = await getAllPublicRoutines()

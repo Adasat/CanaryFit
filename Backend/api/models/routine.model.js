@@ -15,14 +15,17 @@ const routineSchema = new Schema(
       required: true,
     },
     dayPerWeek: {
-      type: Number,
+      type: String,
       enum: ['2 days or less', '3 to 5 days', '6 days or more'],
       required: true
     },
     routineTarget: {
       type: String,
-      enum: ['Lower weight', "Gain weight", "Body definition", "Good shape"],
+      enum: ['Lose weight', "Gain weight", "Body definition", "Good shape"],
       default: 'Good shape',
+    },
+    weightTarget: {
+      type: Number
     },
     styleRoutine: {
       type: String,
