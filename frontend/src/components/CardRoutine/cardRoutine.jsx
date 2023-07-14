@@ -2,9 +2,6 @@ import { getOneUserbyId } from '@/services/user.services'
 import React, { useEffect, useState } from 'react'
 
 function CardRoutine({ routine, handleOpenModal }) {
-
-  
-  
   const handleRoutineForModal = (routine) => {
     return routine 
   }

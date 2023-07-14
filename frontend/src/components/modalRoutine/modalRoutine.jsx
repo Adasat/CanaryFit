@@ -7,17 +7,7 @@ function ModalRoutine({ isVisible, onClose, routine }) {
   const [showRoutine, setShowRoutine] = useState(routine)
     if (!isVisible) return null
 
-  /*       const email = window.localStorage.getItem('email')
-    console.log(email)
-const getUser = async (email) => {
-      const res = getOneUserbyEmail(email)
-      setUser(res)
-    }
-
-  useEffect(() => {
-    getUser(email)
-  }, [])
-  */
+ 
 
   return (
     <div className="fixed inset-0 bg-gray-dark bg-opacity-25 backdrop-blur-sm flex justify-center p-20">

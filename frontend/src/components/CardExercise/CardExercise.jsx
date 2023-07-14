@@ -20,11 +20,14 @@ function CardExercise({ exercise, onExerciseSelect}) {
         <h5 className="mb-2 text-xl text-center font-bold i tracking-tight text-gray-900 dark:text-white">
           {exercise.title}
         </h5>
-        <div className="flex flex-row self-end">
+
+          <div className="flex flex-row self-end">
+        {(exercise.gif && (
           <img
-            src="https://edb-4rme8.ondigitalocean.app/image/IN6TqHOfMHwjtU"
+            src={exercise.gif}
             className="w-20 h-20 self-center"
-          ></img>
+            ></img>
+            ))}
           <p className="self-center ">
             <i>{exercise.muscle}</i>
           </p>

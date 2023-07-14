@@ -26,6 +26,20 @@ export const getOneRoutineById = async (routineId) => {
   }
 }
 
+export const getCurrentRoutine = async() => {
+  try {
+    const { data } = await api.get('/routine/current', {
+      headers: {
+        token: window.localStorage.getItem('token'),
+      }
+    })
+    return data
+  } catch (error) {
+    console.log(error)
+
+  }
+}
+
 export const createNewRoutine = async (title, trainingStyle, daysperWeek, target, weightTarget, gymTime, isPublic, userId, selectedExercises ) => {
   try {
     const {data} = await api.post('/routine', {

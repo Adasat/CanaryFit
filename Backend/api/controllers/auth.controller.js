@@ -18,7 +18,7 @@ const signUp = async (req, res) => {
       weightTarget: req.body.weightTarget,
     });
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "1y",
+      expiresIn: "",
     });
     
 
