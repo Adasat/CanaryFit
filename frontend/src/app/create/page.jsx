@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import CardExercise from '@/components/CardExercise/CardExercise'
 import RoutineForm from '@/components/RoutineForm/RoutineForm'
 import { getAllExercises } from '@/services/exercise.services'
@@ -21,6 +22,7 @@ export default function Create () {
   const [allExercises, setAllExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState([])
   const [user, setUser] = useState('')
+  const router = useRouter()
 
   const getUserbyEmail = async () => {
     const email = await window.localStorage.getItem('email')
@@ -77,6 +79,7 @@ export default function Create () {
         selectedExercises
       )
       alert('Routine created')
+      router.replace('/home')
     } else {
       alert('Some error has ocurred!')
     }
@@ -124,12 +127,12 @@ export default function Create () {
       <div className="flex flex-row justify-between p-4 items-center gap-3">
         {formData.trainingStyle !== undefined &&
         formData.trainingStyle === 'Pull, Push and Legs' ? (
-          <div className="rounded-md border-primary border-4  ml-8 p-4">
+          <div className="rounded-md border-primary text-green-900 border-4  ml-8 p-4">
             <h3>
               Choose exercises for <b>{formData.title}</b>:
             </h3>
             <div>
-              <ul className="list-disc">
+              <ul className="list-disc text-green-700 ">
                 <li className="ml-8">
                   <b>for Core</b>: <i>3 exercises </i>
                 </li>
@@ -144,7 +147,7 @@ export default function Create () {
             <p className="italic mt-3">For exercise 3 reps of 12 reps</p>
           </div>
         ) : formData.trainingStyle === 'Upper and Lower Body' ? (
-          <div className="rounded-md border-primary border-4  ml-8 p-4">
+          <div className="rounded-md border-primary border-4  ml-8 p-4 text-green-900 ">
             <h3>
               Choose exercises for <b>{formData.title}</b>:
             </h3>
@@ -164,7 +167,7 @@ export default function Create () {
             <p className="italic mt-3">For exercise 3 reps of 12 reps</p>
           </div>
         ) : formData.trainingStyle === 'Full Body' ? (
-          <div className="rounded-md border-primary border-4  ml-8 p-4">
+          <div className="rounded-md border-primary border-4  ml-8 p-4 text-green-900 ">
             <h3>
               Choose exercises for <b>{formData.title}</b>:
             </h3>
@@ -181,7 +184,7 @@ export default function Create () {
             <p className="italic mt-3">For exercise 3 reps of 12 reps</p>
           </div>
         ) : formData.trainingStyle === 'By muscles' ? (
-          <div className="rounded-md border-primary border-4  ml-8 p-4">
+          <div className="rounded-md border-primary border-4  ml-8 p-4 text-green-900 ">
             <h3>
               Choose exercises for <b>{formData.title}</b>:
             </h3>

@@ -35,7 +35,7 @@ export default function Login() {
   }
 
   return (
-    <main className="flex  min-h-screen justify-center items-center">
+    <main className="flex  min-h-screen justify-center text-green-800 items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 border-black ">
         <div className="bg-white text-black">
           <Image src={Bg2} width={540} alt="Login photo" />

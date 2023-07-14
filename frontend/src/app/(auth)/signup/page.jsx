@@ -75,7 +75,7 @@ export default function Signup() {
 
   return (
        <main className="flex min-h-screen justify-center items-center">
-      <section className="grid grid-cols-1 md:grid-cols-2 bg-white rounded-md">
+      <section className="grid grid-cols-1 md:grid-cols-2 bg-white text-green-900 rounded-md">
         <ImageSection />
         <div className="h-1 p-5 ">
           <SignupForm

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../../app/globals.css'
 
 function ModalExercise({ isVisible, onClose, exercise }) {
   const [showExercise, setshowExercise] = useState(exercise)
@@ -19,7 +20,7 @@ function ModalExercise({ isVisible, onClose, exercise }) {
           X
         </button>
         <div className="bg-white p-10 flex flex-col">
-          <p className="text-center text-2xl italic">{exercise.title}</p>
+          <p className="text-center text-green-900 text-3xl italic">{exercise.title}</p>
           <div className="flex flex-row">
             <img src={exercise.gif} className="w-3/6"></img>
             <div className="flex flex-col mt-10 w-3/5">
@@ -27,7 +28,7 @@ function ModalExercise({ isVisible, onClose, exercise }) {
                 <h2 id="accordion-collapse-heading-2">
                   <button
                     type="button"
-                    className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="flex items-center justify-between w-full p-5 font-medium text-left text-green-700 border border-b-0 border-secondary focus:ring-4 focus:ring-terciary "
                     data-accordion-target="#accordion-collapse-body-2"
                     aria-expanded={open}
                     aria-controls="accordion-collapse-body-2"
@@ -72,7 +73,7 @@ function ModalExercise({ isVisible, onClose, exercise }) {
                 <h2 id="accordion-collapse-heading-3">
                   <button
                     type="button"
-                    className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="flex items-center justify-between w-full p-5 font-medium text-left  text-green-700 border  border-secondary focus:ring-4 focus:ring-terciary"
                     data-accordion-target="#accordion-collapse-body-3"
                     aria-expanded={open}
                     aria-controls="accordion-collapse-body-3"
@@ -103,7 +104,7 @@ function ModalExercise({ isVisible, onClose, exercise }) {
                   aria-labelledby="accordion-collapse-heading-3"
                 >
                   <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                    <ol className='list-disc ml-10'>
+                    <ol className='list-disc ml-10 text-gray-800'>
 
                     {exercise && exercise.recommendation.length !== 0 && exercise.recommendation.map((recom) => (
                         <li>{recom}</li>
