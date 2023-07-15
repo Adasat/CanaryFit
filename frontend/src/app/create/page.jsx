@@ -8,6 +8,7 @@ import { createNewRoutine } from '@/services/routines.services'
 import { getOneUserbyEmail } from '@/services/user.services'
 import { filterTraining } from '@/validations/validations'
 import { useEffect, useState } from 'react'
+import RootLayout from '../layout'
 
 export default function Create () {
   const [formData, setFormData] = useState({
@@ -124,6 +125,7 @@ export default function Create () {
 
   return (
     <>
+
       <div className="flex flex-row justify-between p-4 items-center gap-3">
         {formData.trainingStyle !== undefined &&
         formData.trainingStyle === 'Pull, Push and Legs' ? (
@@ -209,7 +211,7 @@ export default function Create () {
           <button
             onClick={handleClick}
             className="bg-secondary text-xl w-32 h-14 rounded-xl hover:bg-terciary"
-          >
+            >
             Create
           </button>
         </div>
@@ -230,11 +232,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {coreExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
               <div>
@@ -244,11 +246,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {pullExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
 
@@ -259,11 +261,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {pushExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
+                    key={exercise._id}
+                    exercise={exercise}
                       onExerciseSelect={handleExerciseSelect}
-                    />
-                  ))}
+                      />
+                      ))}
                 </div>
               </div>
 
@@ -277,8 +279,8 @@ export default function Create () {
                       key={exercise._id}
                       exercise={exercise}
                       onExerciseSelect={handleExerciseSelect}
-                    />
-                  ))}
+                      />
+                      ))}
                 </div>
               </div>
             </>
@@ -291,11 +293,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {coreExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
               <div className="col-span-4">
@@ -305,11 +307,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {upperExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
 
@@ -320,11 +322,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {lowerExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
             </>
@@ -337,11 +339,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {coreExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
               <div className="col-span-4 mt-4">
@@ -351,9 +353,9 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-56 overflow-y-auto">
                   {fullExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
                   ))}
                 </div>
@@ -368,11 +370,11 @@ export default function Create () {
                 <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
                   {coreExercises.map((exercise) => (
                     <CardExercise
-                      key={exercise._id}
-                      exercise={exercise}
-                      onExerciseSelect={handleExerciseSelect}
+                    key={exercise._id}
+                    exercise={exercise}
+                    onExerciseSelect={handleExerciseSelect}
                     />
-                  ))}
+                    ))}
                 </div>
               </div>
               {Object.keys(exercisesByMuscles).map((muscle) => (
@@ -384,11 +386,11 @@ export default function Create () {
                     <div className="grid grid-cols-4 gap-4">
                       {exercisesByMuscles[muscle].map((exercise) => (
                         <CardExercise
-                          key={exercise._id}
+                        key={exercise._id}
                           exercise={exercise}
                           onExerciseSelect={handleExerciseSelect}
-                        />
-                      ))}
+                          />
+                          ))}
                     </div>
                   </div>
                 </div>
@@ -398,15 +400,16 @@ export default function Create () {
             <div className="grid grid-cols-4 gap-4 ">
               {allExercises.map((exercise) => (
                 <CardExercise
-                  key={exercise._id}
-                  exercise={exercise}
-                  onExerciseSelect={handleExerciseSelect}
+                key={exercise._id}
+                exercise={exercise}
+                onExerciseSelect={handleExerciseSelect}
                 />
-              ))}
+                ))}
             </div>
           )}
         </div>
       </div>
-    </>
+                </>
+    
   )
 }

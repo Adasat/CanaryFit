@@ -2,7 +2,7 @@ import { api } from './api.js'
 
 export const getAllUsers = async () => {
   try {
-    const { data } = await api.get("/profile")
+    const { data } = await api.get("/profile/all")
     return data
   } catch (err) {
     return false
@@ -23,9 +23,9 @@ export const getOneUserbyEmail = async () => {
   }
 } 
 
-export const getOneUserbyId = async (userId) => {
+export const getOneUserbyId = async () => {
   try {
-    const { data } = await api.get(`/profile/${userId}`, {
+    const { data } = await api.get('/profile/', {
       headers: {
         token: window.localStorage.getItem('token'),
       },

@@ -35,8 +35,8 @@ const getUserByEmail = async (req, res) => {
 }
 
 const getOneUser = async (req, res) => {
-  const userId = req.params.userId;
-
+  const userId = res.locals.user._id;
+  console.log(userId);
   try {
     const user = await User.findById(userId)
       .populate({
@@ -46,6 +46,10 @@ const getOneUser = async (req, res) => {
       .populate({
         path: "progress",
         model: "Progress",
+        populate: {
+          path: "exerciseProgress.exercise",
+          model: "Exercise",
+        },
       })
       .populate({
         path: "favsRoutine",
@@ -56,7 +60,9 @@ const getOneUser = async (req, res) => {
       return res.status(404).json("User not found");
     }
 
-      const currentRoutine = user.actualRoutine ? await Routine.findById(user.actualRoutine._id).populate('exercises') : null;
+    const currentRoutine = user.actualRoutine
+      ? await Routine.findById(user.actualRoutine._id).populate("exercises")
+      : null;
     const progress = user.progress;
     const favsRoutines = user.favsRoutine;
 

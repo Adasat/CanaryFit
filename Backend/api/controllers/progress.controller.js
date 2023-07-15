@@ -25,7 +25,7 @@ const getOneProgress = async (req, res) => {
   const progressId = req.params.progressId;
   try {
     const user = await User.findOne({ progress: progressId }).populate(
-      "progress"
+      "exercises"
     );
     if (!user) {
       return res.status(400).send("User's progress not found");
@@ -48,8 +48,9 @@ const addRegisterWeight = async (req, res) => {
       res.status(400).send("User not found");
     }
     const register = await Progress.create({
-      date: new Date(),
+     
       weightProgress: {
+        date: new Date(),
         weight: req.body.weight,
         bmi: calculateBMI(req.body.weight, user.height),
       },
@@ -80,9 +81,10 @@ const addExerciseRegister = async (req, res) => {
       res.status(400).send("User or exercise not found");
     }
     const register = await Progress.create({
-      date: new Date(),
+      
       exerciseProgress: {
-        execirse: exercise._id,
+        date: new Date(),
+        exercise: exercise._id,
         sets: {
           reps: req.body.reps,
           weightUsed: req.body.weightUsed,

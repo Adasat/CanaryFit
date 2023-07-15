@@ -13,8 +13,8 @@ function CardExercise({ exercise, onExerciseSelect}) {
   return (
     <>
       <div className="max-w-sm  bg-white border-primary shadow-xl rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
-        <div class="flex items-center mb-4">
-        <input id="exercise-checkbox"   checked={isSelected} onChange={handleCheckboxChange} type="checkbox" value={exercise._id} class="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"/>
+        <div className="flex items-center mb-4">
+        <input id="exercise-checkbox"   checked={isSelected} onChange={handleCheckboxChange} type="checkbox" value={exercise._id} className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"/>
         
       </div>
         <h5 className="mb-2 text-xl text-center font-bold i tracking-tight text-gray-900 dark:text-white">

@@ -21,7 +21,7 @@ export default function SignupForm({
   handleClick,
 }) {
   return (
-    <form className="flex flex-col justify-center items-center bg-white gap-3 p-4">
+    <form className="flex flex-col justify-center items-center gap-3 p-4">
       <p className="md:text-5xl text-center">Signup</p>
       <InputField
         label="First name"

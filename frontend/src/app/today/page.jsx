@@ -4,6 +4,7 @@ import { getCurrentRoutine } from '@/services/routines.services'
 import { useEffect, useState } from 'react'
 import ShowExercise from '@/components/ShowExercise/showExercise'
 import ModalExercise from '@/components/modalExercise/ModalExercise'
+import RootLayout from '../layout'
 
 export default function Today () {
   const [currentRoutine, setCurrentRoutine] = useState('')
@@ -95,6 +96,8 @@ export default function Today () {
   }
 
   return (
+    <>
+
     <div className="flex flex-col justify-center items-center">
       {currentRoutine && currentRoutine.title && (
         <div>
@@ -106,31 +109,31 @@ export default function Today () {
           <div
             className={`${
               selectedOption === 'Core'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Core')}
-          >
+            >
             Core
           </div>
           <div
             className={`${
               selectedOption === 'Upper'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Upper')}
-          >
+            >
             Upper Body
           </div>
           <div
             className={`${
               selectedOption === 'Lower'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Pull')}
-          >
+            >
             Lower
           </div>
         </div>
@@ -139,41 +142,41 @@ export default function Today () {
           <div
             className={`${
               selectedOption === 'Core'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Core')}
-          >
+            >
             Core
           </div>
           <div
             className={`${
               selectedOption === 'Pull'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100' 
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100' 
             }`}
             onClick={() => handleClickSelection('Pull')}
-          >
+            >
             Pull
           </div>
           <div
             className={`${
               selectedOption === 'Push'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Push')}
-          >
+            >
             Push
           </div>
           <div
             className={`${
               selectedOption === 'Legs'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Legs')}
-          >
+            >
             {' '}
             Legs
           </div>
@@ -183,21 +186,21 @@ export default function Today () {
           <div
             className={`${
               selectedOption === 'Core'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Core')}
-          >
+            >
             Core
           </div>
           <div
             className={`${
               selectedOption === 'Full Body'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Full Body')}
-          >
+            >
             Full Body
           </div>
         </div>
@@ -206,8 +209,8 @@ export default function Today () {
           <div
             className={`${
               selectedOption === 'Core'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('Core')}
           >
@@ -216,11 +219,11 @@ export default function Today () {
           <div
             className={`${
               selectedOption === 'By muscles'
-                ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
-                : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
+              ? 'flex w-60 h-20 justify-center items-center text-2xl rounded-lg border-2 border-primary bg-primary cursor-pointer transition-colors ease-linear delay-300'
+              : 'flex w-60 h-20 text-green-900 justify-center items-center text-2xl rounded-lg border-2 border-primary cursor-pointer transition-colors ease-linear delay-100'
             }`}
             onClick={() => handleClickSelection('By muscles')}
-          >
+            >
             {' '}
             Muscles
           </div>
@@ -239,68 +242,68 @@ export default function Today () {
         {currentRoutine &&
         currentRoutine.exercises.lenght !== 0 &&
         selectedOption === 'Pull'
-          ? pullExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
+        ? pullExercises.map((exercise) => (
+          <ShowExercise
+          key={exercise._id}
+          exercise={exercise}
+          handleOpenModal={handleOpenModal}
+          />
+          ))
           : selectedOption === 'Push'
           ? pushExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
+            <ShowExercise
+            key={exercise._id}
+            exercise={exercise}
+            handleOpenModal={handleOpenModal}
+            />
             ))
-          : selectedOption === 'Core'
-          ? coreExercises.map((exercise) => (
+            : selectedOption === 'Core'
+            ? coreExercises.map((exercise) => (
               <ShowExercise
+              key={exercise._id}
+              exercise={exercise}
+              handleOpenModal={handleOpenModal}
+              />
+              ))
+              : selectedOption === 'Legs'
+              ? legsExercises.map((exercise) => (
+                <ShowExercise
                 key={exercise._id}
                 exercise={exercise}
                 handleOpenModal={handleOpenModal}
-              />
-            ))
-          : selectedOption === 'Legs'
-          ? legsExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
-          : selectedOption === 'Upper'
-          ? upperExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
-          : selectedOption === 'Lower'
-          ? lowerExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
-          : selectedOption === 'Full Body'
-          ? fullExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))
-          : allExercises.map((exercise) => (
-              <ShowExercise
-                key={exercise._id}
-                exercise={exercise}
-                handleOpenModal={handleOpenModal}
-              />
-            ))}
+                />
+                ))
+                : selectedOption === 'Upper'
+                ? upperExercises.map((exercise) => (
+                  <ShowExercise
+                  key={exercise._id}
+                  exercise={exercise}
+                  handleOpenModal={handleOpenModal}
+                  />
+                  ))
+                  : selectedOption === 'Lower'
+                  ? lowerExercises.map((exercise) => (
+                    <ShowExercise
+                    key={exercise._id}
+                    exercise={exercise}
+                    handleOpenModal={handleOpenModal}
+                    />
+                    ))
+                    : selectedOption === 'Full Body'
+                    ? fullExercises.map((exercise) => (
+                      <ShowExercise
+                      key={exercise._id}
+                      exercise={exercise}
+                      handleOpenModal={handleOpenModal}
+                      />
+                      ))
+                      : allExercises.map((exercise) => (
+                        <ShowExercise
+                        key={exercise._id}
+                        exercise={exercise}
+                        handleOpenModal={handleOpenModal}
+                        />
+                        ))}
       </div>
       <ModalExercise
         isVisible={showModal}
@@ -309,7 +312,8 @@ export default function Today () {
           setShowModal(false)
         }}
         exercise={selectedRoutine}
-      />
+        />
     </div>
+        </>
   )
 }

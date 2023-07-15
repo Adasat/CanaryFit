@@ -4,22 +4,24 @@ const ObjectId = Schema.Types.ObjectId;
 
 const progressSchema = new Schema(
   {
-    date: {
-      type: Date,
-    },
     weightProgress: [
       {
+        date: {
+          type: Date,
+        },
         weight: {
           type: Number,
-      },
+        },
         bmi: {
-          type: Number
-        }
-      }
-      
+          type: Number,
+        },
+      },
     ],
     exerciseProgress: [
       {
+        date: {
+          type: Date,
+        },
         exercise: {
           type: ObjectId,
           ref: "Exercise",

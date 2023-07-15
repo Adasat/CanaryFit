@@ -1,5 +1,3 @@
-// Filtrar por Tipos de Ejercicio
-
 
 export const filterTraining = (marcador) => {
     if(marcador === 'Pull, Push and Legs'){
@@ -13,4 +11,13 @@ export const filterTraining = (marcador) => {
     }else{
         return 5
     }
+}
+
+export function formatDate(date) {
+  const inputDate = new Date(date);
+  const day = String(inputDate.getDate()).padStart(2, '0');
+  const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+  const year = inputDate.getFullYear();
+  const formattedDate = `${day}/${month}/${year}`;
+  return formattedDate;
 }
