@@ -66,7 +66,7 @@ export default function myRoutines() {
       <div className="flex flex-col w-4/6 bg-gray-50 mr-9 p-5 max-h-88 overflow-y-auto">
         <p className="text-3xl font-bold text-green-800 mb-4">Register</p>
         <div className="flex flex-col">
-          {user && user.progress.length > 0 ? (
+          {user && user.progress && user.progress.length > 0 ? (
             <div>
               <p className="text-xl font-bold italic underline">Weight Progress</p>
               {user.progress.map((progress) => (
@@ -89,7 +89,7 @@ export default function myRoutines() {
             <p>There aren't weight progress registers.</p>
           )}
         </div>
-        {user && user.progress.length > 0 ? (
+        {user && user.progress && user.progress.length > 0 ? (
           <div>
             <p className="text-xl font-bold italic underline">Exercise Progress</p>
             {user.progress.map((progress) => (

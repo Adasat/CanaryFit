@@ -1,9 +1,16 @@
 import Image from 'next/image';
 import CanaryFitImage from '../../../public/icon.png'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 export default function Header() {
+  const router = useRouter()
+
+  const logout = () => {
+    window.localStorage.clear()
+    router.replace('/login')
+  }
   return (
     <nav className="bg-primary border-gray-200 dark:bg-gray-900">
       <div className=" flex flex-row items-center justify-around mx-3 p-4">
@@ -25,6 +32,7 @@ export default function Header() {
           <button
             type="button"
             className="text-white bg-error hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            onClick={logout}
           >
             Log out
           </button>
@@ -77,7 +85,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                href="/myprofile"
+                href="/profile"
                 className="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
               >
                 My profile

@@ -12,9 +12,9 @@ function CardExercise({ exercise, onExerciseSelect}) {
   
   return (
     <>
-      <div className="max-w-sm  bg-white border-primary shadow-xl rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
+      <div className="max-w-sm  bg-white border-primary shadow-xl rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 p-4">
         <div className="flex items-center mb-4">
-        <input id="exercise-checkbox"   checked={isSelected} onChange={handleCheckboxChange} type="checkbox" value={exercise._id} className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary"/>
+        <input id="exercise-checkbox"   checked={isSelected} onChange={handleCheckboxChange} type="checkbox" value={exercise._id} className="w-4 h-4 bg-gray-100 border-gray-300 rounded focus:ring-primary"/>
         
       </div>
         <h5 className="mb-2 text-xl text-center font-bold i tracking-tight text-gray-900 dark:text-white">
@@ -28,8 +28,8 @@ function CardExercise({ exercise, onExerciseSelect}) {
             className="w-20 h-20 self-center"
             ></img>
             ))}
-          <p className="self-center ">
-            <i>{exercise.muscle}</i>
+          <p className="self-center text-green-900 ml-6 ">
+            <b>muscle</b>: <i>{exercise.muscle}</i>
           </p>
         </div>
       </div>

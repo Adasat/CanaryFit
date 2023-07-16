@@ -23,6 +23,7 @@ export default function Create () {
   const [allExercises, setAllExercises] = useState([])
   const [selectedExercises, setSelectedExercises] = useState([])
   const [user, setUser] = useState('')
+  const [alert, setAlert] = useState('')
   const router = useRouter()
 
   const getUserbyEmail = async () => {
@@ -79,10 +80,16 @@ export default function Create () {
         user._id,
         selectedExercises
       )
-      alert('Routine created')
-      router.replace('/home')
+      setAlert(true)
+      setTimeout(() => {
+        setAlert('')
+        router.replace('/home')
+      }, 3000)
     } else {
-      alert('Some error has ocurred!')
+      setAlert(false)
+      setTimeout(() => {
+        setAlert('')
+      }, 3000)
     }
   }
   const coreExercises = allExercises.filter((exercise) =>
@@ -127,6 +134,26 @@ export default function Create () {
     <>
 
       <div className="flex flex-row justify-between p-4 items-center gap-3">
+         <div className="absolute top-0 left-0">
+                {' '}
+                {alert === true ? (
+                  <div
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
+                    role="alert"
+                  >
+                    <span class="font-medium">Create done!</span> You will be redirectioned to Home.
+                  </div>
+                ) : alert === false ? (
+                  <div
+                    class="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert"
+                  >
+                    <span class="font-medium">Something went wrong!</span>{' '}
+                    Please, check the fields entered
+                  </div>
+                ) : null}
+              </div>
+
         {formData.trainingStyle !== undefined &&
         formData.trainingStyle === 'Pull, Push and Legs' ? (
           <div className="rounded-md border-primary text-green-900 border-4  ml-8 p-4">
@@ -229,7 +256,7 @@ export default function Create () {
                 <div className="bg-primary text-lg p-2 rounded-md mb-2">
                   <h2>Core Exercises</h2>
                 </div>
-                <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto">
+                <div className="grid grid-cols-4 gap-4 max-h-48 overflow-y-auto ">
                   {coreExercises.map((exercise) => (
                     <CardExercise
                     key={exercise._id}

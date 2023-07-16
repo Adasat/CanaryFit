@@ -9,13 +9,13 @@ export default function App() {
         <div className="flex h-screen justify-center items-center bg-[url('/bgCarrousel2.jpeg')] bg-cover bg-center">
           <div className="bg-gray-300 opacity-95 rounded-lg">
             <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+              <h1 className="mb-4 sm:text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                 The time is now!
               </h1>
               <p className="mb-8 text-lg text-green-700 lg:text-2xl sm:px-16 lg:px-48">
                 "Obstacles don’t have to stop you. If you run into a wall, don’t turn around and give up. Figure out how to climb it, go through it, or work around it."
               </p>
-              <p className='text-center mb-8 italic font-bold text-green-900'>Michael Jordan</p>
+              <p className='text-center md:text-xl mb-8 italic font-bold text-green-900'>Michael Jordan</p>
               <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 <a
                   href="/signup"

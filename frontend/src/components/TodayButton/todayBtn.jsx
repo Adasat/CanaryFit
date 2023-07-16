@@ -9,13 +9,13 @@ function TodayBtn() {
 
 
   return (
-    <div className="flex md:relative flex-col md:w-1/4 justify-start items-center">
+    <div className="flex relative flex-col md:w-1/5 justify-start items-center">
       <Image
         src={CanaryFitImage}
         width={1000}
         height={400}
         alt="Canary Fit Icon"
-        className="flex items-center"
+        className="flex items-center sm:w-2/4 md:w-4/5"
       />
       <div className="flex absolute self-center md:pt-72">
         <button
