@@ -11,7 +11,7 @@ function ShowExercise({ exercise, handleOpenModal }) {
 
         <div className="flex flex-row self-end">
           {exercise.gif && (
-            <img src={exercise.gif} className="w-40 h-40 self-center"></img>
+            <img src={exercise.gif} className="w-32  self-center"></img>
           )}
           <div>
             <p className="self-center">

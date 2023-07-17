@@ -1,8 +1,9 @@
+import { montse } from "@/app/layout";
 
 export default function InputField({ label, type, id, placeholder, value, onChange }) {
   return (
     <div>
-      <label htmlFor={id} className="text-center md:text-lg">
+      <label htmlFor={id} className={`${montse.className} text-center md:text-lg`}>
         {label}:
       </label>
       <input

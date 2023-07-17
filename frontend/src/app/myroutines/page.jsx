@@ -6,6 +6,7 @@ import { getOneUserbyEmail, getOneUserbyId } from '@/services/user.services'
 import { useEffect, useState } from 'react'
 import { formatDate } from '@/validations/validations'
 import MiniCardRoutine from '@/components/MiniCardRoutine/MiniCardRoutine'
+import { rubik } from '../layout'
 
 export default function myRoutines() {
   const [user, setUser] = useState('')
@@ -26,9 +27,9 @@ export default function myRoutines() {
     <div className="flex sm:flex-col md:flex-row justify-between text-green-900 mt-10">
       <div className="flex flex-col gap-5 ml-8">
         <CreateRoutines />
-        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
+        <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-lg">
           {currentRoutine ? (
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-center text-gray-800">
+            <h5 className={`${rubik.className} mb-2 text-2xl font-bold tracking-tight text-center text-gray-800`}>
               {currentRoutine.title}
             </h5>
           ) : (
@@ -63,11 +64,12 @@ export default function myRoutines() {
         </div>
       </div>
       <div className="flex flex-col w-4/6 mr-9 p-5 max-h-88 overflow-y-auto">
-        {user && user.user && user.user.favsRoutine.lenght !== 0 ? 
+        {user && user.user && user.user.favsRoutine.lenght !== 0 ? (
           user.user.favsRoutine.map((fav) => (
-          <MiniCardRoutine key={fav.id} routine={fav}/>
-        )) : (
-            <div>There aren't favourite routine</div>
+            <MiniCardRoutine key={fav.id} routine={fav} />
+          ))
+        ) : (
+          <div>There aren't favourite routine</div>
         )}
       </div>
     </div>

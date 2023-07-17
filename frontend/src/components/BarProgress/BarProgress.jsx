@@ -125,7 +125,7 @@ function BarProgress() {
 
 
   return (
-    <div className=" bg-gray-100 sm:w-full sm:h-full md:w-3/4 md:h-2/5 rounded-lg mt-6">
+    <div className=" bg-white sm:w-full sm:h-full md:w-3/4 md:h-2/5 rounded-lg shadow-lg mt-6">
       {user && user.progress && (
         <Line data={chartData} options={chartOptions} />
       )}

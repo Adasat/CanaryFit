@@ -1,3 +1,4 @@
+import { rubik } from '@/app/layout'
 import { getOneUserbyId } from '@/services/user.services'
 import React, { useEffect, useState } from 'react'
 
@@ -8,9 +9,9 @@ function CardRoutine({ routine, handleOpenModal }) {
   
   return (
     <>
-      <div className="max-w-sm bg-white border-primary shadow-xl rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border-primary shadow-lg rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div className="p-5">
-          <h5 className="mb-2 text-2xl text-center font-bold i tracking-tight text-gray-900 dark:text-white">
+          <h5 className={`${rubik.className} mb-2 text-2xl text-center tracking-tight text-gray-900 dark:text-white`}>
             {routine.title}
           </h5>
           <div className="my-4">
@@ -32,11 +33,12 @@ function CardRoutine({ routine, handleOpenModal }) {
                 <b>Time:</b> <span>{routine.timeEstimate} min</span>
               </p>
             </div>
+            <div className='flex justify-end items-end'>
 
             <button
               href="routine"
               onClick={() => handleOpenModal(routine)}
-              className="inline-flex items-center h-12 px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300"
+              className={`${rubik.className} inline-flex items-center h-12 px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300`}
             >
               <b>Read more</b>
               <svg
@@ -55,6 +57,7 @@ function CardRoutine({ routine, handleOpenModal }) {
                 />
               </svg>
             </button>
+            </div>
           </div>
         </div>
       </div>

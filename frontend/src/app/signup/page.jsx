@@ -133,18 +133,18 @@ export default function Signup() {
                 {' '}
                 {alert === true ? (
                   <div
-                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
+                    className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
                     role="alert"
                   >
-                    <span class="font-medium">Logged done!</span> You will be
+                    <span className="font-medium">Logged done!</span> You will be
                     redirectioned to Home.
                   </div>
                 ) : alert === false ? (
                   <div
-                    class="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
+                    className="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
                     role="alert"
                   >
-                    <span class="font-medium">Something went wrong!</span>{' '}
+                    <span className="font-medium">Something went wrong!</span>{' '}
                     Please, check the fields entered
                   </div>
                 ) : null}
@@ -154,6 +154,6 @@ export default function Signup() {
     </div>
     
     </main>
-            </>
+  </>
   )
   }

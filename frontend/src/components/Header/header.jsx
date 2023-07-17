@@ -2,6 +2,7 @@ import Image from 'next/image';
 import CanaryFitImage from '../../../public/icon.png'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { gugi, rubik, sora } from '@/app/layout';
 
 
 export default function Header() {
@@ -19,11 +20,13 @@ export default function Header() {
             src={CanaryFitImage}
             width={60}
             height={20}
-            alt='Canary Fit Icon'
+            alt="Canary Fit Icon"
             className="flex items-center"
           />
 
-          <span className="self-center text-4xl font-semibold whitespace-nowrap dark:text-white">
+          <span
+            className={`${rubik.className} self-center text-4xl font-semibold whitespace-nowrap dark:text-white`}
+          >
             <Link href={'/home'}>Canary Fit</Link>
           </span>
         </div>
@@ -31,7 +34,7 @@ export default function Header() {
         <div className="flex md:order-2">
           <button
             type="button"
-            className="text-white bg-error hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className={`${rubik.className} text-white bg-error hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
             onClick={logout}
           >
             Log out
@@ -68,8 +71,8 @@ export default function Header() {
           <ul className="flex flex-col font-large p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-pr md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a
-                href='/today'
-                className="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
+                href="/today"
+                className={`${gugi.className} block py-2 pl-3 pr-4 lg:text-2xl hover:text-white`}
                 aria-current="page"
               >
                 Today
@@ -78,7 +81,7 @@ export default function Header() {
             <li>
               <a
                 href="/myroutines"
-                className="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
+                className={`${gugi.className} block py-2 pl-3 pr-4 lg:text-2xl hover:text-white`}
               >
                 My routines
               </a>
@@ -86,7 +89,7 @@ export default function Header() {
             <li>
               <a
                 href="/profile"
-                className="block py-2 pl-3 pr-4 lg:text-2xl hover:text-white"
+                className={`${gugi.className} block py-2 pl-3 pr-4 lg:text-2xl hover:text-white`}
               >
                 My profile
               </a>

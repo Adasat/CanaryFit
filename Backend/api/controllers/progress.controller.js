@@ -41,7 +41,6 @@ const getOneProgress = async (req, res) => {
 
 const addRegisterWeight = async (req, res) => {
   const userId = res.locals.user._id;
-  console.log(userId)
   try {
     const user = await User.findById(userId);
     if (!user) {

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { userLogin } from '@/services/auth.services'
 import { useRouter } from 'next/navigation'
-import RootLayout from '../layout'
+import { montse, montseBold, rubik } from '../layout'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -48,14 +48,14 @@ export default function Login() {
         <div className="flex sm:flex-col sm:w-4/5 md:4/5 md:flex-row border-black ">
           <div className="flex flex-col sm:h-auto md:h-auto md:w-5/6 mr-10">
             <form className="flex flex-col items-center justify-center gap-3 p-5 md:h-screen w-100">
-              <p className="sm:text-2xl md:text-5xl text-black mb-15 text-center">
+              <p className={`${montseBold.className} sm:text-2xl md:text-5xl text-black mb-15 text-center`}>
                 Login
               </p>
               <div className="mt-">
                 <div className="flex flex-col mb-6">
                   <label
                     htmlFor="email"
-                    className="mt-7 text-xs sm:text-sm tracking-wide text-gray-600"
+                    className={`${montse.className} mt-7 text-md sm:text-sm tracking-wide text-gray-600`}
                   >
                     E-Mail Address: {email}
                   </label>
@@ -156,15 +156,15 @@ export default function Login() {
                 {' '}
                 {alert === true ? (
                   <div
-                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
+                    className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
                     role="alert"
                   >
-                    <span class="font-medium">Logged done!</span> You will be
+                    <span className="font-medium">Logged done!</span> You will be
                     redirectioned to Home.
                   </div>
                 ) : alert === false ? (
                   <div
-                    class="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
+                    className="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
                     role="alert"
                   >
                     <span class="font-medium">Something went wrong!</span>{' '}
@@ -174,7 +174,7 @@ export default function Login() {
               </div>
 
               <button
-                className="flex justify-center self-center md:text-lg w-1/4 mt-3  text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                className={`${rubik.className} flex justify-center self-center md:text-lg w-1/4 mt-3  text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
                 onClick={handleSubmit}
               >
                 Submit
