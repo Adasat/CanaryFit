@@ -230,6 +230,8 @@ const updateRoutine = async (req, res) => {
 };
 
 //DELETE ROUTINE FOR FAVS ROUTINE
+
+
 const deleteFavRoutine = async (req, res) => {
   const routineId = req.body.routineId;
   const userId = res.locals.user._id;

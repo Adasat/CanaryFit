@@ -98,7 +98,7 @@ export default function Today () {
   return (
     <>
 
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-cepnter items-center">
       {currentRoutine && currentRoutine.title && (
         <div>
           <p className='sm:text-xl md:text-4xl text-green-900 my-5 italic'>{currentRoutine.title}</p>
