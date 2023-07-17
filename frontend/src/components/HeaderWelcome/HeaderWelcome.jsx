@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import CanaryFitImage from '../../../public/icon.png'
 import { useRouter } from 'next/navigation'
+import { rubik } from '@/app/layout'
 
 function HeaderWelcome() {
   const router = useRouter()
@@ -17,7 +18,7 @@ function HeaderWelcome() {
               className=" self-center "
             />
 
-            <span className="self-center text-gray-900 sm:text-2xl md:text-4xl font-semibold whitespace-nowrap">
+            <span className={`${rubik.className} self-center text-gray-900 sm:text-2xl md:text-4xl font-semibold whitespace-nowrap`}>
               Canary Fit
             </span>
           </div>
@@ -25,14 +26,14 @@ function HeaderWelcome() {
         <div className="flex sm:flex-col md:flex-row justify-end items-center">
           <button
             type="button"
-            className="flex justify-center sm:w-auto mt-2 md:text-lg w-1/4 text-black bg-white  border-white border-2  hover:border-secondary hover:bg-secondary hover:text-white rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 shadow-2xl"
+            className={`${rubik.className} flex justify-center sm:w-auto mt-2 md:text-lg w-1/4 text-black bg-white  border-white border-2  hover:border-secondary hover:bg-secondary hover:text-white rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 shadow-2xl`}
             onClick={() => router.push('/login')}
           >
             Login
           </button>
           <button
             type="button"
-            className="flex justify-center sm:w-auto mt-2 ml-4 md:text-lg w-1/4 text-black bg-terciary  border-terciary border-2 hover:bg-secondary hover:text-white hover:border-secondary rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 shadow-2xl"
+            className={`${rubik.className} flex justify-center sm:w-auto mt-2 ml-4 md:text-lg w-1/4 text-black bg-terciary  border-terciary border-2 hover:bg-secondary hover:text-white hover:border-secondary rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 shadow-2xl`}
             onClick={() => router.push('/signup')}
           >
             Signup

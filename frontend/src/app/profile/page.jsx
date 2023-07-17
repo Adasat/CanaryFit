@@ -5,7 +5,7 @@ import { getOneUserbyId } from '@/services/user.services'
 import { formatDate } from '@/validations/validations'
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { sora } from '../layout'
+import { rubik, sora } from '../layout'
 
 function Profile() {
   const [user, setUser] = useState()
@@ -132,7 +132,7 @@ function Profile() {
                     onChange={handleWeight}
                   />
                   <button
-                    className="flex justify-center md:text-lg w-auto mt-3  text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                    className={`${rubik.className} flex justify-center md:text-lg w-auto mt-3  text-white bg-primary hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800  rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
                     onClick={handleSubmit}
                   >
                     Submit
@@ -145,15 +145,15 @@ function Profile() {
             <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
               Weight registers
             </p>
-            <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
+            <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
               {user && user.progress && user.progress.length > 0 ? (
-                <ul className="list-disc ml-5 mt-1">
+                <ul className="list-decimal my-4 ml-5 divide-y divide-gray-200">
                   {user.progress.map((progress) =>
                     progress.weightProgress.map((weight) => (
-                      <div className="ml-4" key={weight.id}>
+                      <div className="ml-4 " key={weight.id}>
                         <li>Date: {formatDate(weight.date)}</li>
                         <p className="ml-5">
-                          <b>Weight</b>: {weight.weight} - <b>BMI</b>:{' '}
+                          <b>Weight</b>: {weight.weight} kg - <b>BMI</b>:{' '}
                           {weight.bmi}
                         </p>
                       </div>
@@ -171,19 +171,27 @@ function Profile() {
             </p>
             {user && user.progress && user.progress.length > 0 ? (
               <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
-                <ul className="list-disc ml-5 mt-1">
+                <ul className="list-decimal ml-5 my-4 divide-y divide-gray-200">
                   {user.progress.map((progress) =>
                     progress.exerciseProgress.map((exercise) => (
                       <div className="ml-4" key={exercise.id}>
                         <li>Date: {formatDate(exercise.date)}</li>
-                        <b className="ml-5">Exercise</b>:{' '}
-                        {exercise.exercise.title} - <b>Muscle</b>:{' '}
+                        <p>
+                        <b className="ml-2">Exercise</b>:{' '}
+                        {exercise.exercise.title}
+                          
+                        </p>
+                        <p>
+                        <b className="ml-2">Muscle</b>:{' '}
                         {exercise.exercise.muscle}
+
+                        </p>
+                         
                         <ul>
                           {exercise.sets.map((set, index) => (
                             <li key={index} className="ml-8">
                               <b>Reps</b>: {set.reps} - <b>Weight used</b>:{' '}
-                              {set.weightUsed}
+                              {set.weightUsed} kg
                             </li>
                           ))}
                         </ul>
@@ -198,7 +206,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center md:w-full sm:w-4/5 sm:h-auto md:w-1/2 md:h-2/3">
+      <div className="flex justify-center items-center md:w-full sm:w-full">
         <BarProgress />
       </div>
     </div>

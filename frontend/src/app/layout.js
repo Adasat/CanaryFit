@@ -2,7 +2,7 @@
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
 import './globals.css'
-import { Sora, Fugaz_One, Gugi, Montserrat_Alternates} from 'next/font/google'
+import { Sora, Fugaz_One, Gugi, Montserrat_Alternates, Urbanist} from 'next/font/google'
 import { usePathname } from 'next/navigation'
 import HeaderWelcome from '@/components/HeaderWelcome/HeaderWelcome'
 
@@ -14,6 +14,7 @@ export const montseBold = Montserrat_Alternates({
   subsets: ['latin'],
   weight: '500'
 })
+export const urbanist = Urbanist({subsets: ['latin']})
 
 console.log(sora)
 
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
       return (
         <>
           <html lang="en">
-            <body className={`${montse.className} bg-gray-200 `}>
+            <body className={`${urbanist.className} bg-gray-200 `}>
               {children}
             </body>
           </html>
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
       return (
         <>
           <html lang="en">
-            <body className={`${montse.className} bg-gray-200 `}>
+            <body className={`${urbanist.className} bg-gray-200 `}>
               <HeaderWelcome />
               {children}
             </body>
@@ -46,7 +47,7 @@ export default function RootLayout({ children }) {
       return (
         <>
           <html lang="en">
-            <body className={`${montse.className} bg-gray-200 `}>
+            <body className={`${urbanist.className} bg-gray-200 `}>
               <Header />
               <div className="flex flex-col min-h-screen">
                 <div className="flex-grow">{children}</div>
