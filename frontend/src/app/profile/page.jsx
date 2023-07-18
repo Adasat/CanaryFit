@@ -201,7 +201,9 @@ function Profile() {
                 </ul>
               </div>
             ) : (
+              <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
               <p>There aren't exercise progress registers.</p>
+              </div>
             )}
           </div>
         </div>

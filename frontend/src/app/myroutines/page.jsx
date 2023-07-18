@@ -33,7 +33,7 @@ export default function myRoutines() {
               {currentRoutine.title}
             </h5>
           ) : (
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-800">
+            <h5 className=" text-2xl font-bold tracking-tight text-gray-800">
               Not found current routine
             </h5>
           )}
@@ -63,7 +63,7 @@ export default function myRoutines() {
           )}
         </div>
       </div>
-      <div className="flex flex-col w-4/6 mr-9 p-5 max-h-88 overflow-y-auto">
+      <div className="flex flex-col w-4/6 mr-9 max-h-88 overflow-y-auto">
         {user && user.user && user.user.favsRoutine.lenght !== 0 ? (
           user.user.favsRoutine.map((fav) => (
             <MiniCardRoutine key={fav.id} routine={fav} />

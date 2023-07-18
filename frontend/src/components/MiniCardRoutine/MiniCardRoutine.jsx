@@ -2,7 +2,7 @@ import React from 'react'
 
 function MiniCardRoutine({routine}) {
   return (
-    <div className="bg-white my-4 h-2/6 w-2/3 rounded-lg shadow-md p-3">
+    <div className="bg-white mb-4 h-2/6 w-2/3 rounded-lg shadow-md p-3">
       <div>
         <p className="sm:text-lg md:text-xl font-bold">{routine.title}</p>
       </div>
