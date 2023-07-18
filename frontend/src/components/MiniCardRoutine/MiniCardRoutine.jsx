@@ -1,10 +1,20 @@
 import React from 'react'
 
-function MiniCardRoutine({routine}) {
+function MiniCardRoutine({routine, handleClick}) {
+
+
+  const handleClickButton = () => {
+    handleClick(routine._id)
+  }
+
+
   return (
     <div className="bg-white mb-4 h-2/6 w-2/3 rounded-lg shadow-md p-3">
-      <div>
+      <div className='flex flex-row justify-between'>
         <p className="sm:text-lg md:text-xl font-bold">{routine.title}</p>
+        <button className='bg-transparent text-sm text-error text-bold border-2 p-1 rounded-2xl shadow-lg hover:bg-error hover:text-white border-error' onClick={handleClickButton}>Unfollow</button>
+
+
       </div>
       <div>
         <p className="md:text-lg italic">Details:</p>

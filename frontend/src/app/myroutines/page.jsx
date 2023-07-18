@@ -1,7 +1,7 @@
 'use client'
 
 import CreateRoutines from '@/components/CreateRoutines/CreateRoutines'
-import { getCurrentRoutine } from '@/services/routines.services'
+import { deleteAFavRoutine, getCurrentRoutine } from '@/services/routines.services'
 import { getOneUserbyEmail, getOneUserbyId } from '@/services/user.services'
 import { useEffect, useState } from 'react'
 import { formatDate } from '@/validations/validations'
@@ -11,6 +11,8 @@ import { rubik } from '../layout'
 export default function myRoutines() {
   const [user, setUser] = useState('')
   const [currentRoutine, setCurrentRoutine] = useState('')
+  const [alert, setAlert] = useState('')
+  const [refresh, setRefresh] = useState(false)
 
   const getUserbyEmail = async () => {
     const routine = await getCurrentRoutine()
@@ -19,9 +21,27 @@ export default function myRoutines() {
     setCurrentRoutine(routine)
   }
 
+  const handleClick = async (id) => {
+    if(id !== null) {
+      setAlert(true)
+      await deleteAFavRoutine(id)
+      setTimeout(() => {
+        setAlert('')
+        setRefresh(!refresh)
+      }, 2000)
+    } else {
+      setAlert(false)
+      setTimeout(() => {
+        setAlert('')
+      }, 2000)
+
+    }
+    
+  }
+
   useEffect(() => {
     getUserbyEmail()
-  }, [])
+  }, [refresh])
 
   return (
     <div className="flex sm:flex-col md:flex-row justify-between text-green-900 mt-10">
@@ -64,14 +84,37 @@ export default function myRoutines() {
         </div>
       </div>
       <div className="flex flex-col w-4/6 mr-9 max-h-88 overflow-y-auto">
+        <p className='font-bold md:text-xl mb-3'>
+          Favourite Routines
+        </p>
         {user && user.user && user.user.favsRoutine.lenght !== 0 ? (
           user.user.favsRoutine.map((fav) => (
-            <MiniCardRoutine key={fav.id} routine={fav} />
+            <MiniCardRoutine key={fav.id} routine={fav} handleClick={handleClick} />
           ))
         ) : (
           <div>There aren't favourite routine</div>
         )}
       </div>
+
+      <div className="absolute top-0 left-0">
+                {' '}
+                {alert === true ? (
+                  <div
+                    class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-200 dark:bg-gray-800 dark:text-green-400"
+                    role="alert"
+                  >
+                    <span class="font-medium">Remove routine successfully!</span>
+                  </div>
+                ) : alert === false ? (
+                  <div
+                    class="p-4 mb-4 text-sm text-red-700 rounded-lg bg-pink-100 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert"
+                  >
+                    <span class="font-medium">Something went wrong!</span>{' '}
+                    Please, try again.
+                  </div>
+                ) : null}
+              </div>
     </div>
   )
 }

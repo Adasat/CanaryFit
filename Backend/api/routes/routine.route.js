@@ -30,7 +30,7 @@ router.patch('/', checkAuth, updateCurrentRoutine)
 router.patch('/update', checkAuth, updateRoutine)
 
 router.delete('/', checkAuth, deleteRoutine)
-router.delete('/remove', checkAuth, deleteFavRoutine)
+router.delete('/remove/:routineId', checkAuth, deleteFavRoutine)
 router.delete('/:routineId', checkAuth, deleteExerciseFromRoutine)
 
 module.exports = router

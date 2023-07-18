@@ -233,7 +233,7 @@ const updateRoutine = async (req, res) => {
 
 
 const deleteFavRoutine = async (req, res) => {
-  const routineId = req.body.routineId;
+  const routineId = req.params.routineId;
   const userId = res.locals.user._id;
   
 
