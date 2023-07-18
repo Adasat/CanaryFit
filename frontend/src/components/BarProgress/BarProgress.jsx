@@ -49,7 +49,6 @@ function BarProgress() {
 
     const labels = weightProgress.flatMap((entry) => entry.map((item) => formatDate(item.date)));
     const data = weightProgress.flatMap((entry) => entry.map((item) => item.weight));
-    const data2 = data.unshift(user.user.weight)
     
     setChartData({
       labels: labels,
@@ -76,44 +75,11 @@ function BarProgress() {
           text: `Weight Progress - Target: ${user.user.weightTarget} kg`
         },
       },
-      annotation: {
-        annotations: {
-          minLabel: {
-            type: 'line',
-            scaleID: 'y',
-            value: user.user.weightTarget, 
-            borderColor: 'red',
-            borderWidth: 1,
-            label: {
-              content: 'Mínimo',
-              position: 'start',
-              backgroundColor: 'white',
-              font: {
-                size: 12,
-              },
-            },
-          },
-          maxLabel: {
-            type: 'line',
-            scaleID: 'y',
-            value: user.user.weight + 50, // Acceder a la propiedad weightTarget en user.user
-            borderColor: 'green',
-            borderWidth: 1,
-            label: {
-              content: 'Máximo',
-              position: 'start',
-              backgroundColor: 'white',
-              font: {
-                size: 12,
-              },
-            },
-          },
-        },
-      },
+      
       scales: {
         y: {
-          min: user.user.weight + 50, // Acceder a la propiedad weight en user.user
-          max: user.user.weightTarget , // Acceder a la propiedad weightTarget en user.user
+          min: user.user.weight - 20, 
+          max: user.user.weight + 30, // Acceder a la propiedad weightTarget en user.user
         },
       },
       maintainAspectRatio: false,
@@ -125,7 +91,7 @@ function BarProgress() {
 
 
   return (
-    <div className=" bg-white sm:w-full sm:h-full md:w-2/4 md:h-56 rounded-lg shadow-lg mt-6">
+    <div className=" bg-white md:w-full rounded-lg shadow-lg">
       {user && user.progress && (
         <Line data={chartData} options={chartOptions} />
       )}

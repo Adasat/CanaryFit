@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
             return (
               <>
                 <html lang="en">
-                  <body className={`${urbanist.className} bg-gray-200 `}>
+                  <body className={`${urbanist.className} bg-gray-200 mb-20`}>
                     <HeaderWelcome />
                     {children}
                   </body>
@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
            return (
               <>
                 <html lang="en">
-                  <body className={`${urbanist.className} bg-gray-200 `}>
+                  <body className={`${urbanist.className} bg-gray-200 mb-16`}>
                     <Header />
                     <div className="flex flex-col min-h-screen">
                       <div className="flex-grow">{children}</div>

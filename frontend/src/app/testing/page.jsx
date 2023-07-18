@@ -65,7 +65,7 @@ function Profile() {
   }
 
   return (
-    <div className="flex flex-col text-green-900">
+    <div className="flex flex-row text-green-900">
       <div className="absolute top-0 left-0">
         {' '}
         {alert === true ? (
@@ -86,9 +86,9 @@ function Profile() {
         ) : null}
       </div>
 
-      <div className="flex flex-col ">
-        <div className="flex sm:flex-col md:flex-row md:justify-between p-7">
-          <div className="flex flex-col md:ml-32">
+      <div className="flex flex-row justify-between gap-4 ">
+        <div className="flex sm:flex-col md:flex-row md:w-2/4 md:justify-between p-7">
+          <div className="flex flex-col justify-center">
             <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
               Profile
             </p>
@@ -142,80 +142,80 @@ function Profile() {
                 </div>
               </div>
             )}
+            <div className="">
+              <div className="flex flex-col ">
+                <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
+                  Weight registers
+                </p>
+                {user && user.progress && user.progress.length > 0 ? (
+                  <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
+                    <ul className="list-decimal my-4 ml-5 divide-y divide-gray-200">
+                      {user.progress.map((progress) =>
+                        progress.weightProgress.map((weight) => (
+                          <div className="ml-4 " key={weight.id}>
+                            <li>Date: {formatDate(weight.date)}</li>
+                            <p className="ml-5">
+                              <b>Weight</b>: {weight.weight} kg - <b>BMI</b>:{' '}
+                              {weight.bmi}
+                            </p>
+                          </div>
+                        ))
+                      )}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl">
+                    <p>There aren't weight progress registers.</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col md:w-1/3 md:mr-40">
+          <div className="flex flex-col md:w-2/4 md:mr-40">
             <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
               Graphic Weight Progress
             </p>
             <BarProgress />
           </div>
-        </div>
-      </div>
-      <div className="flex flex-row justify-around items-center">
-        <div className="flex flex-col md:w-1/3">
-          <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
-            Weight registers
-          </p>
-          {user && user.progress && user.progress.length > 0 ? (
-            <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
-              <ul className="list-decimal my-4 ml-5 divide-y divide-gray-200">
-                {user.progress.map((progress) =>
-                  progress.weightProgress.map((weight) => (
-                    <div className="ml-4 " key={weight.id}>
-                      <li>Date: {formatDate(weight.date)}</li>
-                      <p className="ml-5">
-                        <b>Weight</b>: {weight.weight} kg - <b>BMI</b>:{' '}
-                        {weight.bmi}
-                      </p>
-                    </div>
-                  ))
-                )}
-              </ul>
-            </div>
-          ) : (
-            <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl">
-              <p>There aren't weight progress registers.</p>
-            </div>
-          )}
-        </div>
-        <div className="flex flex-col md:w-1/3 ">
-          <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
-            Exercise regiters
-          </p>
-          {user && user.progress && user.progress.length > 0 ? (
-            <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
-              <ul className="list-decimal ml-5 my-4 divide-y divide-gray-200">
-                {user.progress.map((progress) =>
-                  progress.exerciseProgress.map((exercise) => (
-                    <div className="ml-4" key={exercise.id}>
-                      <li>Date: {formatDate(exercise.date)}</li>
-                      <p>
-                        <b className="ml-2">Exercise</b>:{' '}
-                        {exercise.exercise.title}
-                      </p>
-                      <p>
-                        <b className="ml-2">Muscle</b>:{' '}
-                        {exercise.exercise.muscle}
-                      </p>
+          <div className="flex flex-col md:w-1/3 ">
+            <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
+              Exercise regiters
+            </p>
+            {user && user.progress && user.progress.length > 0 ? (
+              <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
+                <ul className="list-decimal ml-5 my-4 divide-y divide-gray-200">
+                  {user.progress.map((progress) =>
+                    progress.exerciseProgress.map((exercise) => (
+                      <div className="ml-4" key={exercise.id}>
+                        <li>Date: {formatDate(exercise.date)}</li>
+                        <p>
+                          <b className="ml-2">Exercise</b>:{' '}
+                          {exercise.exercise.title}
+                        </p>
+                        <p>
+                          <b className="ml-2">Muscle</b>:{' '}
+                          {exercise.exercise.muscle}
+                        </p>
 
-                      <ul>
-                        {exercise.sets.map((set, index) => (
-                          <li key={index} className="ml-8">
-                            <b>Reps</b>: {set.reps} - <b>Weight used</b>:{' '}
-                            {set.weightUsed} kg
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))
-                )}
-              </ul>
-            </div>
-          ) : (
-            <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl">
-              <p>There aren't exercise progress registers.</p>
-            </div>
-          )}
+                        <ul>
+                          {exercise.sets.map((set, index) => (
+                            <li key={index} className="ml-8">
+                              <b>Reps</b>: {set.reps} - <b>Weight used</b>:{' '}
+                              {set.weightUsed} kg
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))
+                  )}
+                </ul>
+              </div>
+            ) : (
+              <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl">
+                <p>There aren't exercise progress registers.</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -223,3 +223,4 @@ function Profile() {
 }
 
 export default Profile
+

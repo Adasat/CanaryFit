@@ -71,7 +71,6 @@ export default function Signup() {
       if(userExists === undefined){
         return false
       }else{
-        console.log(userExists)
         return userExists;
       }
       

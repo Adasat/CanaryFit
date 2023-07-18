@@ -9,7 +9,7 @@ import ModalRoutine from '@/components/modalRoutine/modalRoutine'
 import BarProgress from '@/components/BarProgress/BarProgress'
 import { sora } from '../layout'
 
-export default function Home () {
+export default function Home() {
   const [routines, setRoutines] = useState([])
   const [user, setUser] = useState('')
   const [showModal, setShowModal] = useState(false)
@@ -38,13 +38,14 @@ export default function Home () {
 
   return (
     <>
-      <div className='flex justify-start items-center ml-20 my-4 sm:m-auto'>
-        <div className='flex items-center justify-center w-96 mt-3 border-b-primary rounded-md border-2 ml-7 mb-4'>
-          <p className='text-black text-xl '>
+      {' '}
+      <div className="inline-block items-start justify-start rounded-md border-2 ml-7 ">
+        <div className="bg-secondary p-2 rounded-xl mt-2">
+          <p className="text-black text-xl mt-4 mb-5">
             Welcome{'    '}
             <i>
               <b className={sora.className}>
-                <span className='text-2xl '>
+                <span className="text-2xl ">
                   {user.firstname} {user.lastname}{' '}
                 </span>
               </b>
@@ -53,34 +54,39 @@ export default function Home () {
           </p>
         </div>
       </div>
-
-      <div className='flex sm:flex-col md:flex-row justify-evenly ml-4'>
-        {user.actualRoutine === undefined
-          ? (
-            <CreateRoutines className='flex flex-col' />
-            )
-          : (
-            <TodayBtn />
-            )}
-        <div className='flex flex-col md:w-2/3'>
-          <p className={`${sora.className} text-green-900 font-bold text-2xl`}>Public routines</p>
-          <div className='bg-gray-200 rounded-md p-4 scroll-m-2 md:col-start-2 col-span-4   max-h-96 overflow-y-auto'>
+      <div className='flex justify-center'>
+        <div className='flex flex-col md:w-1/3'>
+          <div>
+            {user.actualRoutine === undefined ? (
+              <div className='p-43'>
+                <CreateRoutines />
+              </div>
+              ) : ( <TodayBtn />)}
+          </div>
+          <div className="flex justify-center items-center md:h-1/3 p-4">
+            <BarProgress />
+          </div>
+        </div>
+        <div className="flex flex-col md:w-2/3">
+          <p
+            className={`${sora.className} text-green-900 font-bold text-2xl ml-2`}
+          >
+            Public routines
+          </p>
+          <div className="bg-gray-200 rounded-md p-4 scroll-m-2 overflow-y-auto">
             <div>
-              <div className='grid justify-center sm:grid-cols-1 md:grid-cols-4 gap-2 '>
-                {routines && routines.length !== 0
-                  ? (
-                      routines.map((routine, i) => (
-                        <CardRoutine
+              <div className="grid justify-center sm:grid-cols-1 md:grid-cols-3 gap-2 ">
+                {routines && routines.length !== 0 ? (
+                  routines.map((routine, i) => (
+                    <CardRoutine
                       key={i}
                       routine={routine}
                       handleOpenModal={handleOpenModal}
-
                     />
-                      ))
-                    )
-                  : (
-                    <p>"There aren't routines on our website"</p>
-                    )}
+                  ))
+                ) : (
+                  <p>"There aren't routines on our website"</p>
+                )}
               </div>
             </div>
           </div>
@@ -94,11 +100,6 @@ export default function Home () {
         }}
         routine={selectedRoutine}
       />
-      <div className='flex flex-row items-center justify-center'>
-        <div className='flex justify-center items-center sm:w-4/5 sm:h-auto md:w-1/2 md:h-2/3'>
-          <BarProgress />
-        </div>
-      </div>
     </>
   )
 }

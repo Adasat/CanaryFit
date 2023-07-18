@@ -13,9 +13,9 @@ export default function Header() {
     router.replace('/login')
   }
   return (
-    <nav className="bg-primary border-gray-200 dark:bg-gray-900">
-      <div className=" flex flex-row items-center justify-around mx-3 p-4">
-        <div className="flex flex-wrap md:space-x-4">
+    <nav className=" bg-primary h-20">
+      <div className=" flex flex-row items-center justify-around mx-3 p-1">
+        <div className="flex items-center flex-wrap md:space-x-4">
           <Image
             src={CanaryFitImage}
             width={60}

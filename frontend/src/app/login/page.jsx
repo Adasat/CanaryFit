@@ -57,7 +57,7 @@ export default function Login() {
                     htmlFor="email"
                     className={`${montse.className} mt-7 text-md sm:text-sm tracking-wide text-gray-600`}
                   >
-                    E-Mail Address: {email}
+                    E-Mail Address: 
                   </label>
                   <div className="relative">
                     <div className="flex items-center justify-center absolute h-full w-10 text-gray-400">
@@ -89,7 +89,7 @@ export default function Login() {
                     htmlFor="password"
                     className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
                   >
-                    Password: {password}
+                    Password: 
                   </label>
                   <div className="relative">
                     <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
