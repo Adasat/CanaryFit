@@ -4,12 +4,12 @@ import React from 'react'
 function CreateRoutines() {
   return (
     <>
-      <div className="box-border border-width-8 border-black shadow-xl flex flex-col bg-terciary p-4 rounded-lg h-2/5">
-        <p className="text-lg text-gray-800">Do you want to create a new routine?</p>
+      <div className="box-border border-width-8 border-black shadow-xl flex flex-col justify-between bg-terciary p-4 rounded-lg h-1/4">
+        <p className="text-xl text-gray-800">Do you want to create a new routine?</p>
           <Link href={'/create'}>
         <div className="flex flex-row mt-4 justify-end">
           <b>
-           <span className="sm:text-end self-center text-green-800 d:text-2xl">Create Routine</span>
+           <span className="sm:text-end self-center text-green-800 md:text-2xl">Create Routine</span>
           </b> 
             <svg
               className="flex justify-end w-8 h-8 ml-4 text-gray-800 dark:text-white cursor-pointer"

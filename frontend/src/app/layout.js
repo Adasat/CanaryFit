@@ -1,6 +1,7 @@
 'use client'
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
+import Head from 'next/head'
 import './globals.css'
 import { Sora, Fugaz_One, Gugi, Montserrat_Alternates, Urbanist} from 'next/font/google'
 import { usePathname, useRouter } from 'next/navigation'
@@ -28,6 +29,8 @@ export default function RootLayout({ children }) {
       return (
         <>
           <html lang="en">
+              <title>Canary Fit</title>
+
             <body className={`${urbanist.className} bg-gray-200 `}>
               {children}
             </body>
@@ -41,30 +44,33 @@ export default function RootLayout({ children }) {
             return (
               <>
                 <html lang="en">
+                  <title>Canary Fit</title>
+
                   <body className={`${urbanist.className} bg-gray-200 mb-20`}>
                     <HeaderWelcome />
                     {children}
                   </body>
                 </html>
               </>
-            
             )
            
         
       }else{
         if(user !== null){
            return (
-              <>
-                <html lang="en">
-                  <body className={`${urbanist.className} bg-gray-200 mb-16`}>
-                    <Header />
-                    <div className="flex flex-col min-h-screen">
-                      <div className="flex-grow">{children}</div>
-                    </div>
-                    <Footer className="relative min-h-0" />
-                  </body>
-                </html>
-              </>
+             <>
+               <html lang="en">
+                 <title>Canary Fit</title>
+
+                 <body className={`${urbanist.className} bg-gray-200 mb-16`}>
+                   <Header />
+                   <div className="flex flex-col min-h-screen">
+                     <div className="flex-grow">{children}</div>
+                   </div>
+                   <Footer className="relative min-h-0" />
+                 </body>
+               </html>
+             </>
            )
           } else {
             router.replace('/')

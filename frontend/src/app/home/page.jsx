@@ -35,10 +35,7 @@ export default function Home() {
   useEffect(() => {
     getUserbyEmail()
     getAllRoutines()
-
   }, [refresh])
-
- 
 
   const handleOpenModal = (routine) => {
     setSelectedRoutine(routine)
@@ -46,7 +43,6 @@ export default function Home() {
   }
 
   const handleFavClick = async (id) => {
-
     if (id !== undefined) {
       setAlert(true)
       await addAFavRoutine(id)
@@ -63,7 +59,6 @@ export default function Home() {
   }
 
   const handleFavDeleteClick = async (id) => {
-    console.log(id)
     if (id !== undefined) {
       setAlert(true)
       await deleteAFavRoutine(id)
