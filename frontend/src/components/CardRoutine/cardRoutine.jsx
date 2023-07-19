@@ -9,10 +9,10 @@ function CardRoutine({
   handleOpenModal,
   handleFavClick,
   handleFavDeleteClick,
+  refresh
 }) {
   const [user, setUser] = useState('')
   const [isFav, setIsFav] = useState(false)
-  const [refresh, setRefresh] = useState(false)
 
   const getUser = async () => {
     const res = await getOneUserbyId()
@@ -35,17 +35,19 @@ function CardRoutine({
 
   const handleAddClick = () => {
     handleFavClick(routine._id)
-    setRefresh(!refresh)
   }
 
   const handleRemoveClick = () => {
     handleFavDeleteClick(routine._id)
-    setRefresh(!refresh)
   }
 
   useEffect(() => {
-    getUser()
     findFavRoutine(routine)
+  }, [user])
+
+  useEffect(() => {
+    getUser()
+
   }, [refresh])
 
   

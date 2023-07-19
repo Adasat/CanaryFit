@@ -34,11 +34,11 @@ export default function Home() {
 
   useEffect(() => {
     getUserbyEmail()
-  }, [])
-
-  useEffect(() => {
     getAllRoutines()
-  }, [user])
+
+  }, [refresh])
+
+ 
 
   const handleOpenModal = (routine) => {
     setSelectedRoutine(routine)
@@ -46,20 +46,19 @@ export default function Home() {
   }
 
   const handleFavClick = async (id) => {
-    console.log(id)
 
     if (id !== undefined) {
       setAlert(true)
       await addAFavRoutine(id)
+      setRefresh(!refresh)
       setTimeout(() => {
         setAlert('')
-        setRefresh(!refresh)
-      }, 2000)
+      }, 100)
     } else {
       setAlert(false)
       setTimeout(() => {
         setAlert('')
-      }, 2000)
+      }, 100)
     }
   }
 
@@ -68,15 +67,15 @@ export default function Home() {
     if (id !== undefined) {
       setAlert(true)
       await deleteAFavRoutine(id)
+      setRefresh(!refresh)
       setTimeout(() => {
         setAlert('')
-      }, 2000)
-      setRefresh(!refresh)
+      }, 100)
     } else {
       setAlert(false)
       setTimeout(() => {
         setAlert('')
-      }, 2000)
+      }, 100)
     }
   }
 
@@ -149,6 +148,7 @@ export default function Home() {
                       handleOpenModal={handleOpenModal}
                       handleFavClick={handleFavClick}
                       handleFavDeleteClick={handleFavDeleteClick}
+                      refresh={refresh}
                     />
                   ))
                 ) : (
