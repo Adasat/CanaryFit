@@ -122,7 +122,7 @@ function Profile() {
                     htmlFor="weight"
                     className="text-center italic md:text-lg"
                   >
-                    New weight register:
+                    New weight record:
                   </label>
                   <input
                     type="number"
@@ -154,10 +154,10 @@ function Profile() {
       <div className="flex flex-row justify-around items-center">
         <div className="flex flex-col md:w-1/3">
           <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
-            Weight registers
+            Weight records
           </p>
           {user && user.progress && user.progress.length > 0 ? (
-            <div className="flex bg-gray-50 sm:mr-10 p-5 gap-3 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
+            <div className="flex bg-gray-50 sm:mr-10 p-2 gap-3 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
               <ul className="list-decimal my-4 ml-5 divide-y divide-gray-200">
                 {user.progress.map((progress) =>
                   progress.weightProgress.map((weight) => (
@@ -180,10 +180,10 @@ function Profile() {
         </div>
         <div className="flex flex-col md:w-1/3 ">
           <p className="flex items-start text-green-900 font-bold sm:text-xl md:text-2xl mt-5">
-            Exercise regiters
+            Exercise records
           </p>
           {user && user.progress && user.progress.length > 0 ? (
-            <div className="flex flex-col bg-gray-50 sm:mr-10 p-5 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
+            <div className="flex flex-col bg-gray-50 sm:mr-10 p-2 rounded-xl shadow-2xl max-h-72 overflow-y-auto">
               <ul className="list-decimal ml-5 my-4 divide-y divide-gray-200">
                 {user.progress.map((progress) =>
                   progress.exerciseProgress.map((exercise) => (
