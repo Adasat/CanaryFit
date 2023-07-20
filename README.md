@@ -1,8 +1,6 @@
 # Canary Fit - README
 
-![Canary Fit Logo]<center>
-  https://i.ibb.co/r3Gsjzc/Logo-insta-removebg-preview.png
-</center>
+<center><img src='https://i.ibb.co/r3Gsjzc/Logo-insta-removebg-preview.png'></center>
 
 ## Table of Contents
 
