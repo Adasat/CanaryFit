@@ -73,7 +73,7 @@ We welcome contributions from the open-source community to improve Canary Fit. I
 
 ## Feedback
 
-We value your feedback! If you have any suggestions, bug reports, or general feedback, please feel free to open an issue on our GitHub repository or contact our team at feedback@canaryfitapp.com.
+We value your feedback! If you have any suggestions, bug reports, or general feedback, please feel free to open an issue on our GitHub repository or contact our team at [GitHub contact](https://github.com/Adasat).
 
 ## License
 
