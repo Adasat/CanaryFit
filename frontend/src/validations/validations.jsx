@@ -21,3 +21,10 @@ export function formatDate(date) {
   const formattedDate = `${day}/${month}/${year}`;
   return formattedDate;
 }
+
+export function isUserLogged() {
+    const user = window.localStorage.getItem('token')
+
+    return user 
+
+}

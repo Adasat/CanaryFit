@@ -1,12 +1,12 @@
 'use client'
 import Header from '@/components/Header/header'
 import Footer from '@/components/Footer/footer'
-import Head from 'next/head'
 import './globals.css'
 import { Sora, Fugaz_One, Gugi, Montserrat_Alternates, Urbanist} from 'next/font/google'
 import { usePathname, useRouter } from 'next/navigation'
 
 import HeaderWelcome from '@/components/HeaderWelcome/HeaderWelcome'
+import { isUserLogged } from '@/validations/validations'
 
 export const sora = Sora({ subsets: ['latin'] })
 export const gugi = Gugi({ subsets: ['latin'], weight: '400'})
@@ -21,7 +21,7 @@ export const urbanist = Urbanist({subsets: ['latin']})
 export default function RootLayout({ children }) {
   const pathname = usePathname()
   const router = useRouter()
-  const user = window.localStorage.getItem('token')
+  const user = isUserLogged()
 
   {
     
