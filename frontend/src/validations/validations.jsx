@@ -25,7 +25,7 @@ export function formatDate(date) {
 export function isUserLogged() {
 
     if (typeof window !== "undefined") {
-    value = localStorage.getItem("favoriteNumber") || ""
+    const value = localStorage.getItem("favoriteNumber") || ""
     return value
     }
 

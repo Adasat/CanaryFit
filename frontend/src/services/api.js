@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:27020/api',
+  baseURL: 'mongodb+srv://pbonbol:Trabajo.90@canaryfit.jhlsoqo.mongodb.net/api',
   timeout: 3000
 })
 
