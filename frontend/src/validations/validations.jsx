@@ -23,7 +23,7 @@ export function formatDate(date) {
 }
 
 export function isUserLogged() {
-    const user = window.localStorage.getItem('token')
+    const user = localStorage.getItem('token')
 
     return user 
 
