@@ -23,8 +23,11 @@ export function formatDate(date) {
 }
 
 export function isUserLogged() {
-    const user = localStorage.getItem('token')
 
-    return user 
+    if (typeof window !== "undefined") {
+    value = localStorage.getItem("favoriteNumber") || ""
+    return value
+    }
+
 
 }
