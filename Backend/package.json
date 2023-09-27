@@ -11,6 +11,7 @@
   },
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "build": "next build"
   }
 }
